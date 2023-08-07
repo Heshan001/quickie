@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container h1{
+    text-align: center;
+    font-size: 55px;
+    margin-top: 7%;
+    position: relative;
+}
+
+.container .btn{
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.container .btn button{
+    font-size: 45px;
+    padding: 10px 15px;
+    background: none;
+    background-color: rgb(198, 187, 209);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+
+.container .btn button:hover{
+    transform: translateY(-15px);
+}
