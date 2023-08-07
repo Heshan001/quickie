@@ -1,0 +1,28 @@
+.heading{
+    color: rgb(52, 114, 222);
+    font-size: 50px;
+    text-align: center;
+    margin-top: 10%;
+    font-weight: 600;
+}
+
+.buttons {
+     text-align: center;
+     margin-top: 40px;   
+   
+
+}
+
+.btn1{
+    background-color: aquamarine;
+    border-radius: 10px;
+    font-size: 30px;
+    width: 150px;
+    
+}
+.btn2{
+    margin-left: 25px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    font-size: 30px;
+}

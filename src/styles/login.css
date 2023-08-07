@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.cover {
+    justify-content: center;
+    align-items: center;
+    background-color:white;   
+    width: 30em;
+    height: 35em;    
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(100,156,156);
+    display: flex;
+    flex-direction: column;
+}
+.cover {
+    margin: auto;
+    width: 22%;
+    border: 3px solid green;
+    margin-top: 10em;
+}
+h1{
+    margin-top: -150px;
+
+}
+.uname{
+    margin-top: 50px;
+    font-size: large;
+    border-radius: 5px;
+}
+.pwd{
+   margin-top: 50px;
+    font-size: large;
+    border-radius: 5px;
+}
+#forget{
+    margin-top: 10px;
+    margin-left: 60px;
+    font-size: smaller;
+    color: red;
+}
+.button {
+    text-align: center;
+    margin-top: 40px;   
+  
+}
+
+.btn{
+   background-color: rgb(12, 181, 130);
+   border-radius: 10px;
+   font-size: 20px;
+   width: 100px;
+   height: 30px;
+   color: aliceblue;
+}
