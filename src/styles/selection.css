@@ -4,37 +4,73 @@
     box-sizing: border-box;
 }
 
-.container h1{
-    text-align: center;
-    font-size: 55px;
+.headerContent{
+width: 100%;
+height: 43px;
+background: rgba(2, 55, 98, 1);
+}
+
+.contentText{
+    margin-top: 4%;
+}
+
+.mainContent{
+    width: 100%;
+    height: 634px;
     margin-top: 7%;
-    position: relative;
-}
-
-.container .btn{
-    margin: 0;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    background: rgba(23, 158, 215, 0.75); 
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    gap: 380px;
+    
+    
+     
 }
 
-.container .btn button{
-    font-size: 45px;
-    padding: 10px 15px;
-    background: none;
-    background-color: rgb(198, 187, 209);
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+.mainContent .Img{ 
+    width: 33rem;
+    height: 83vh;
+    margin-top: 2%;
+    position: relative;
+    
     
 }
 
-.container .btn button:hover{
-    transform: translateY(-15px);
+.mainContent .Img2{
+    width: 30rem;
+    height: 70vh;
+    margin-left: 45%;
+    position: absolute;
+    margin-top: 12%;
+    
+    
+}
+
+.mainContent h1{
+    color: rgba(2, 55, 98, 1);
+    font-size: 96px;
+    font-weight: 600;
+    padding-top: 83px;
+    padding-left: 75px;
+}
+
+.buttons {
+    margin-left: 75px;
+    margin-top: 5%;
+   display: flex;
+   gap: 5%;
+}
+
+
+button{
+    padding: 15px 55px;
+    font-size: 30px;
+    border-radius: 18px;
+    border:none;
+    box-shadow: rgba(16, 2, 70, 0.06) 0 4px 4px 0;
+    cursor: pointer;
+    transition: 0.3s; 
+}
+
+button:hover{
+    transform: translateY(-5px);
 }
