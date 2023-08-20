@@ -4,73 +4,48 @@
     box-sizing: border-box;
 }
 
-.headerContent{
-width: 100%;
-height: 43px;
-background: rgba(2, 55, 98, 1);
+.nav{
+    padding: 30px 20px;
 }
 
-.contentText{
-    margin-top: 4%;
-}
-
-.mainContent{
+.content{
+    background: url(../images/background.jpg);
     width: 100%;
-    height: 634px;
-    margin-top: 7%;
-    background: rgba(23, 158, 215, 0.75); 
-    display: flex;
-    gap: 380px;
-    
-    
-     
+    height: 90vh;
+    background-size: cover;
 }
 
-.mainContent .Img{ 
-    width: 33rem;
-    height: 83vh;
+.content .conText{
+    padding: 5% 6%; 
+    
+}
+.content .conText h1{
+    font-size: 60px;
+}
+
+.content .conText p{
+    width: 50%;
     margin-top: 2%;
-    position: relative;
-    
-    
 }
 
-.mainContent .Img2{
-    width: 30rem;
-    height: 70vh;
-    margin-left: 45%;
-    position: absolute;
-    margin-top: 12%;
-    
-    
+.btn{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    gap: 20px;
+    margin-top: 2%;
 }
 
-.mainContent h1{
-    color: rgba(2, 55, 98, 1);
-    font-size: 96px;
-    font-weight: 600;
-    padding-top: 83px;
-    padding-left: 75px;
-}
-
-.buttons {
-    margin-left: 75px;
-    margin-top: 5%;
-   display: flex;
-   gap: 5%;
-}
-
-
-button{
-    padding: 15px 55px;
-    font-size: 30px;
-    border-radius: 18px;
-    border:none;
-    box-shadow: rgba(16, 2, 70, 0.06) 0 4px 4px 0;
+.btn button{
+    padding: 10px 10px;
+    font-size: 25px;
+    background: none;
+    border-radius: 15px;
+    border: 2px solid #625353;
     cursor: pointer;
-    transition: 0.3s; 
+    transition: 0.3s;
 }
 
-button:hover{
-    transform: translateY(-5px);
+.btn button:hover{
+    transform: translateY(-10px);
 }
