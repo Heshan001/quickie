@@ -5,16 +5,16 @@ function StudentSignUp() {
     const inputs = [
         {
             type:"text",
-            id: "fName",
-            name: "fName",
-            placeholder:"First Name",
+            id: "uName",
+            name: "uName",
+            placeholder:"User Name",
         },
 
         {
             type:"text",
-            id: "lName",
-            name: "lName",
-            placeholder:"Last Name",
+            id: "fName",
+            name: "fName",
+            placeholder:"Full Name",
         },
 
         {
