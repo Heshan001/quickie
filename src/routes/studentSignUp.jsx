@@ -54,7 +54,7 @@ function StudentSignUp() {
                     
             </form>
 
-            <button>Sign </button>
+            <button>Sign up </button>
                 
 
 
