@@ -1,12 +1,14 @@
 import React from 'react'
 import '../styles/selection.css'
+import NavBar from '../components/navBar'
 
 
 function Selection() {
   return (
     <div>
       <div className="nav">
-
+        <NavBar/>
+        <hr />
       </div>
       <div className="content">
         <div className="conText">
