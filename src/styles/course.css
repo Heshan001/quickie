@@ -1,0 +1,95 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.hero{
+    background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.60)), url(../images/event.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 85vh;
+    background-size: cover;
+}
+
+.heroContent{
+    padding: 10% 5%;
+    color: rgb(226, 226, 226);
+}
+
+.heroContent h1{
+    font-size: 50px;
+
+}
+
+.courseContent{
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.courseContent .contentCard{
+    width: 50%;
+}
+
+.contentCard p{
+    margin-top: 2%;
+}
+
+.comment{
+    padding: 4%;
+}
+
+.comment .addComment{
+    background-color: rgb(242, 241, 241);
+    width: 49%;
+    height: 40vh;
+    border-radius: 10px;
+    
+    
+}
+
+.addComment h3{
+    padding: 14px 18px;
+    font-family: sans-serif;
+}
+
+.addComment textarea{
+   margin: 1px 18px;
+    background-color: rgb(242, 239, 239);
+}
+
+.addComment button{
+    padding:8px 12px;
+    font-size: 15px;
+    margin-left: 84%;
+    background-color: aqua;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comments{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comments .commentBox{
+    background-color: rgb(242, 241, 241);
+    width: 49%;
+    height: 20vh;
+    border-radius: 10px;
+}
+
+.commentBox h3{
+    padding: 14px 18px;
+    font-family: sans-serif;
+}
+
+.commentBox p{
+   margin: 1px 18px;
+    background-color: rgb(242, 239, 239);
+}

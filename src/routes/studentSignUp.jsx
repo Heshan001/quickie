@@ -1,66 +1,75 @@
-import React from 'react'
-import '../styles/studentSignUp.css'
+import React from 'react';
+import '../styles/studentSignUp.css';
+import NavBar from '../components/navBar.jsx';
+import Footer from '../components/footer'
+import { useNavigate } from 'react-router-dom';
 
 function StudentSignUp() {
+    const navigate = useNavigate()
     const inputs = [
         {
-            type:"text",
-            id: "uName",
-            name: "uName",
-            placeholder:"User Name",
+            type: 'text',
+            id: 'fName',
+            name: 'fName',
+            label: 'First Name',
         },
-
         {
-            type:"text",
-            id: "fName",
-            name: "fName",
-            placeholder:"Full Name",
+            type: 'text',
+            id: 'lName',
+            name: 'lName',
+            label: 'Last Name',
         },
-
         {
-            type:"email",
-            id: "email",
-            name: "email",
-            placeholder:"E Mail",
+            type: 'email',
+            id: 'email',
+            name: 'email',
+            label: 'E Mail',
         },
-
         {
-            type:"password",
-            id: "password",
-            name: "password",
-            placeholder:"Password",
+            type: 'password',
+            id: 'password',
+            name: 'password',
+            label: 'Password',
         },
-
         {
-            type:"password",
-            id: "conformPassword",
-            name: "conformPassword",
-            placeholder:"Conform Password",
+            type: 'password',
+            id: 'confirmPassword',
+            name: 'confirmPassword',
+            label: 'Confirm Password',
         },
+    ];
 
-    ]
-  return (
-    <div>
-       
-        <div className="container">
-        <h1>Sign Up</h1>
-            <form action="">
-
-                {inputs.map((item,index) => {
-                    return(
-                        <input key = {index} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} />  
-                    )
-                })}
-                    
-            </form>
-
-            <button>Sign up </button>
-                
-
-
+    return (
+        <div>
+            <div className="nav">
+                <NavBar />
+                <hr />
             </div>
+
+            <div className="hero"></div>
+
+            <div className="signUpForm">
+                <h1>Student SignUp</h1>
+
+                <form action="">
+                     {inputs.map(({ label, id, type, name }, index) => (
+                        <div className="inputs" key={index}>
+                            
+                            <input type={type} id={id} placeholder={label} />
+                        </div>
+                    ))}
+
+                    <button onClick={() => navigate('/Login')}>Sign Up</button>
+
+                    <p>I have already account. <a href="#">Login</a> </p>
+
+                </form>
+                   
+               
+            </div>
+            <Footer/>
         </div>
-  )
+    );
 }
 
-export default StudentSignUp
+export default StudentSignUp;

@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav hr{
+    width: 40%;
+    margin-top: 1%;
+    margin-left: 28%;
+    background-color: #181818;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search input{
+    background-color: rgb(214, 255, 226);
+    padding: 8px;
+    height: 35px;
+}
+
+.searchTerm {
+  width: 40%;
+  border: 2px solid #e7e6e6;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.filter{
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter input{
+  border: 2px solid #c6c6c6;
+  padding: 8px;
+  height: 35px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
+  background-color: rgb(214, 255, 226);
+}
+
+.filter button{
+    padding: 5px 20px;
+    height: 30px;
+    background: none;
+    background-color: rgb(214, 255, 226);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+
+}
+
+.filterSection{
+    background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.60)), url(../images/event.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 90vh;
+    background-size: cover;
+    padding-top: 4%;
+}
+
+.mainCardSection{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: -20%;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.mainCardSection .mainCard{
+    width: 20%;
+    height: 50vh;
+    background-color: rgb(214, 255, 226);
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px 0px rgb(153, 152, 152);
+}
+
+.mainCardSection .mainCard h3{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.mainCardSection .mainCard img{
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+
+.mainCardSection .mainCard p{
+    margin-top: 2%;
+    padding: 5px;
+}
+
+.mainCardSection .mainCard button{
+    margin-top: 2%;
+    padding: 7px;
+    margin-left: 2%;
+    background-color: #bababa;
+    border: none;
+    cursor: pointer;
+ 
+}

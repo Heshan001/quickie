@@ -1,0 +1,43 @@
+.mainCont{
+        margin-top: 10%;
+        background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url(../images/hero1.jpg);
+        background-size: cover;
+        width: 100%;
+        height: 50vh;
+        background-size: cover;
+        color: aquamarine;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding-left: 10%;
+ }
+
+ .mainCont .div{
+display: flex;
+gap: 10%;
+ }
+
+ .mainCont .div .div1{
+    width: 20%;
+ }
+
+ .mainCont .div .div2 ul li a{
+    text-decoration: none;
+    color: aquamarine;
+ }
+
+ .mainCont .div .div2  ul li{
+    list-style: none;
+    margin-top: 7%;
+ }
+
+ .mainCont .div .div3  ul li{
+    list-style: none;
+    margin-top: 7%;
+ }
+
+ .mainCont .div .div4  ul li{
+    list-style: none;
+    margin-top: 7%;
+ }
+

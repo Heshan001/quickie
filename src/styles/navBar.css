@@ -26,3 +26,16 @@ nav ul li a{
     text-decoration: none;
     color: #050505;
 }
+
+
+.nav hr{
+    width: 40%;
+    margin-top: 1%;
+    margin-left: 28%;
+    background-color: #181818;
+   
+}
+
+.nav{
+    padding: 30px 20px;
+}

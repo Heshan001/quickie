@@ -5,7 +5,7 @@ function NavBar() {
 
     const navItems =[
         {name : 'Home',
-         link: '/home'
+         link: '/'
         },
  
         {name : 'About',
@@ -28,7 +28,7 @@ function NavBar() {
     <div>
         <nav className='navItems'>
             
-
+            
             <ul className='navMenu'>
             {navItems.map((item,index) => {
                 return(

@@ -1,0 +1,120 @@
+
+.App-header {
+    background-color: #282c34;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  #App-Item {
+    padding: 20;
+  }
+  
+  .App-dropDown {
+    height: 50;
+    min-height: 5vh;
+    margin-left: 5%;
+  }
+  .dropDown-Item {
+    min-height: 40;
+    align-items: center;
+    justify-content: center;
+    display: 1;
+  }
+  .App-table {
+    align-content: center;
+  }
+  
+  .table-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  #dropDownStyle {
+    height: 40%;
+  }
+  
+  .tableStyle {
+    border-collapse: collapse;
+    /* width: 100%; */
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+    width: 300px;
+    font-size: 16;
+    display: flexbox;
+    /* text-align: center;
+    justify-content: flex-start;
+    flex: 1; */
+  }
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+    border: #282c34;
+  }
+  th {
+    background-color: grey;
+    color: white;
+  }
+  tbody {
+    /* display: block; */
+    height: 250px;
+    overflow: auto;
+    height: 60%;
+    width: 100%;
+    padding: 8px;
+  }
+  
+  #pagination {
+    margin-top: 25px;
+    float: right;
+    margin-right: 8%;
+  }
+  
+  #pagination span {
+    cursor: pointer;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+  }
+  
+  .Drop-down {
+    float: left;
+  }
+  tr {
+    align-content: center;
+    justify-items: center;
+    font-size: 16;
+  }
+  td {
+    border: 1px solid rgb(12, 12, 12);
+    display: 1;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+  }
+  th {
+    border: 1px solid rgb(12, 12, 12);
+    text-align: center;
+    font-size: 16;
+  }
+  
+  span:hover {
+    background-color: red;
+  }
+  span:focus-visible{
+    background-color: red;
+  
+  }
+  

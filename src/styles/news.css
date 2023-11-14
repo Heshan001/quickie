@@ -1,0 +1,32 @@
+
+.buttons{
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    margin-top: 4%;
+    
+}
+.buttons button{
+    padding: 15px 15px;
+    border: none;
+    border-radius: 5px;
+}
+.newsSection{
+    display: flex;
+    flex-wrap: wrap;  
+    margin-top: 1%;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.newsItem{
+    display: flex;
+  width: 20%;
+  height: 40vh;
+  background-color: #eceaea;
+  border-radius: 10px;
+  
+    
+    
+}
