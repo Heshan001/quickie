@@ -9,6 +9,7 @@ import MainHome from './routes/mainHome'
 import Course from './routes/course'
 import Contact from './routes/contact'
 import Login from './routes/login'
+import Dashboard from './routes/admin/dashBoard.jsx'
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 
 
@@ -24,7 +25,7 @@ const App = () => {
         <Route path = '/about' element = {<About/>}/>
         <Route path = '/login' element = {<Selection/>}/>
         <Route path = '/event' element = {<Events/>}/>
-        <Route path = '/contact' element = {<Course/>}/>
+        <Route path = '/contact' element = {<Dashboard/>}/>
         <Route path = '/StudentSignUp' element = {<StudentSignUp/>}/>
         <Route path = '/Login' element = {<Login/>}/>
         <Route path = '/mainHome' element = {<MainHome/>}/>
