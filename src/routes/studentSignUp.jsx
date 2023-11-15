@@ -31,12 +31,6 @@ function StudentSignUp() {
             name: 'password',
             label: 'Password',
         },
-        {
-            type: 'password',
-            id: 'confirmPassword',
-            name: 'confirmPassword',
-            label: 'Confirm Password',
-        },
     ];
 
     return (

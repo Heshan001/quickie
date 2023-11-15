@@ -15,8 +15,8 @@ function SideBar() {
         },
 
         {
-            link : '/mangePosts',
-            name : 'Mange Posts'
+            link : '/mangeCourses',
+            name : 'Mange Courses'
         },
 
         {

@@ -11,6 +11,11 @@ import Contact from './routes/contact'
 import Login from './routes/login'
 // import Dashboard from './routes/admin/dashBoard.jsx'
 import ManageUsers from './routes/admin/manageUsers.jsx'
+import ManageEvents from './routes/admin/manageEvents.jsx'
+import ManageCourses from './routes/admin/manageCourses.jsx'
+import ManageComments from './routes/admin/manageComments.jsx'
+import InstituteDash from './routes/institute/dashboard.jsx'
+import InstituteManageCourses from './routes/institute/manageCourses.jsx'
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 
 
@@ -26,13 +31,14 @@ const App = () => {
         <Route path = '/about' element = {<About/>}/>
         <Route path = '/login' element = {<Selection/>}/>
         <Route path = '/event' element = {<Events/>}/>
-        <Route path = '/contact' element = {<ManageUsers/>}/>
+        <Route path = '/contact' element = {<InstituteManageCourses/>}/>
         <Route path = '/StudentSignUp' element = {<StudentSignUp/>}/>
         <Route path = '/Login' element = {<Login/>}/>
-        <Route path = '/mainHome' element = {<MainHome/>}/>
-
-
-        
+        <Route path = '/mainHome' element = {<MainHome/>}/> 
+        <Route path = '/mangeUsers' element = {<ManageUsers/>}/> 
+        <Route path = '/mangeEvents' element = {<ManageEvents/>}/>  
+        <Route path = '/mangeCourses' element = {<ManageCourses/>}/>
+        <Route path = '/mangeComments' element = {<ManageComments/>}/>  
       </Route>
     )
   )
@@ -42,5 +48,8 @@ const App = () => {
     </div>
   )
 }
+
+
+
 
 export default App;
