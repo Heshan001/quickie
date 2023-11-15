@@ -1,0 +1,33 @@
+.mainC{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10%;
+}
+
+.userTable{
+    margin-top: 3%;
+}
+
+.userTable h1{
+    font-size: 25px;
+}
+
+
+ .userTable table{
+    border-collapse: collapse;
+    font-size: 15px;
+    min-width: 400px;
+    background-color: rgb(222, 222, 224);
+    margin-top: 1%;
+
+
+ }
+
+ .userTable table thead tr{
+    text-align: left;
+    background-color: rgb(141, 142, 142);
+ }
+
+ .userTable th, .userTable td{
+    padding: 12px 125px;
+ }

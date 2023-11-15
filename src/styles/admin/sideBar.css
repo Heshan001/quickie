@@ -1,8 +1,9 @@
 .sideBar{
-    width: 18%;
+    width: 120%;
     height: 100vh;
     background-color: rgb(63, 59, 166);
     box-shadow: 1px 1px 15px 0px rgb(63, 59, 166);
+    
 }
 
 .sideBarSection{
