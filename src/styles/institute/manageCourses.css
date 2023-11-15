@@ -4,8 +4,36 @@
     box-sizing: border-box;
 }
 
-.instituteContent{
+.institute{
     display: flex;
+    gap: 35%;
 }
 
-.
+.instituteContent{
+    margin-top: 2%;
+}
+
+.addCourse{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.addCourse label{
+    margin-top: 2%;
+}
+
+.addCourse input{
+    padding: 5px 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin: 1%;
+}
+
+
+
+
+
+
+
+

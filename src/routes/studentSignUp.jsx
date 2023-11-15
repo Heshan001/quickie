@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/studentSignUp.css';
 import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 function StudentSignUp() {
     const navigate = useNavigate()
@@ -12,26 +15,53 @@ function StudentSignUp() {
             id: 'fName',
             name: 'fName',
             label: 'First Name',
+            value : 'this.state.fName'
         },
         {
             type: 'text',
             id: 'lName',
             name: 'lName',
             label: 'Last Name',
+            value : 'this.state.lName'
+
         },
         {
             type: 'email',
             id: 'email',
             name: 'email',
             label: 'E Mail',
+            value : 'this.state.email'
         },
         {
             type: 'password',
             id: 'password',
             name: 'password',
             label: 'Password',
-        },
+            value : 'this.state.password'
+        }
     ];
+
+    const [state, setState] =  useState({
+        fName : '',
+        lName : '',
+        email : '',
+        password : ''
+    })
+
+    const handleInput = (e) => {
+        setState({
+            ...state,
+            [e.target.name] : e.target.value
+        });
+    }
+
+    const saveStudent = async (e) =>{
+        e.preventDefault();
+
+        const res = await axios.post('/api/add-student', state )
+
+
+    }
 
     return (
         <div>
@@ -45,11 +75,11 @@ function StudentSignUp() {
             <div className="signUpForm">
                 <h1>Student SignUp</h1>
 
-                <form action="">
-                     {inputs.map(({ label, id, type, name }, index) => (
+                <form action="" onSubmit={this.saveStudent}>
+                     {inputs.map(({ label, id, type, name, value }, index) => (
                         <div className="inputs" key={index}>
                             
-                            <input type={type} id={id} placeholder={label} />
+                            <input onChange={this.handleInput} type={type} id={id} name={name} value={value} placeholder={label} />
                         </div>
                     ))}
 
