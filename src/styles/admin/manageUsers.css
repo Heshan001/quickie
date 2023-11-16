@@ -1,7 +1,7 @@
 .mainC{
     display: flex;
     flex-wrap: wrap;
-    gap: 10%;
+    gap: 5%;
 }
 
 .userTable{
