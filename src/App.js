@@ -1,5 +1,6 @@
 import './App.css';
 import StudentSignUp from './routes/studentSignUp'
+import InstituteSignUp from './routes/instituteSignUp.jsx'
  import Selection from './routes/selection.jsx'
 import Index from './routes/index'
 // import Test from './routes/test'
@@ -29,10 +30,11 @@ const App = () => {
       <Route>
         <Route path = '/' element = {<Index/>}/>
         <Route path = '/about' element = {<About/>}/>
-        <Route path = '/login' element = {<Selection/>}/>
+        <Route path = '/Selection' element = {<Selection/>}/>
         <Route path = '/event' element = {<Events/>}/>
-        <Route path = '/contact' element = {<Dashboard/>}/>
+        <Route path = '/contact' element = {<Login/>}/>
         <Route path = '/StudentSignUp' element = {<StudentSignUp/>}/>
+        <Route path = '/InstituteSignUp' element = {<InstituteSignUp/>}/>
         <Route path = '/Login' element = {<Login/>}/>
         <Route path = '/mainHome' element = {<MainHome/>}/> 
         <Route path = '/mangeUsers' element = {<ManageUsers/>}/> 

@@ -17,7 +17,7 @@ function NavBar() {
         },
  
         {name : 'Login',
-        link: '/login'
+        link: '/Selection'
         },
  
         {name : 'Contact',
