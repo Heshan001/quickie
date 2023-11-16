@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../styles/studentSignUp.css';
 import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 
 function StudentSignUp() {
     const navigate = useNavigate();
@@ -85,7 +86,9 @@ function StudentSignUp() {
 
                     <button type="submit">Sign Up</button>
 
-                    <p>I have already account. <a href="#">Login</a> </p>
+                    <p> I have already account. <Link to="/Login">Login</Link>{' '}</p>
+
+                   
 
                 </form>
             </div>
