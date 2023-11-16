@@ -13,7 +13,7 @@ function SideBar() {
         },
 
         {
-            link : '/manageCourses',
+            link : '/insManageCourses',
             name : 'Manage Courses'
         },
 
@@ -25,12 +25,8 @@ function SideBar() {
         {
             link : '/mangeCourses',
             name : 'Mange Courses'
-        },
-
-        {
-            link : '/mangeComments',
-            name : 'Mange Comments'
         }
+
     ]
   return (
     <div>
