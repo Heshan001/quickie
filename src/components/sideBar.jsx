@@ -15,14 +15,20 @@ function SideBar() {
         },
 
         {
-            link : '/mangeEvents',
-            name : 'Manage Events'
+            link : '/mangeNews',
+            name : 'Manage News'
         },
 
         {
             link : '/mangeCourses',
             name : 'Manage Courses'
         },
+
+        {
+            link : '/mangeEvents',
+            name : 'Manage Events'
+        },
+
 
         {
             link : '/mangeComments',

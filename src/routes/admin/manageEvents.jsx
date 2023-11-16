@@ -9,32 +9,6 @@ function ManageUsers() {
         <SideBar/>
         </div>
 
-        <div className="eventContent">
-             <div className="news">
-
-        <h1>Add News and Updates</h1>
-            <div className="inputSection">
-                <form action=""> 
-                <div className="newsInput">
-                    
-                    <input placeholder='News tiitle' type="text" />
-                </div>
-
-                <div className="newsInput">
-                    
-                   <textarea placeholder='add description' name="" id="" cols="56" rows="10"></textarea>
-                </div>
-
-                <div className="newsInput">
-                    
-                    <input type="text" />
-                </div>
-                <button type='submit'>Add</button>
-                </form>
-               
-            </div>
-        </div>
-
         <div className="userTable">
         <h1>Manage Events</h1>
 
@@ -54,7 +28,7 @@ function ManageUsers() {
             
         </tr>
         <tr>
-            <td>Nipun</td>
+            <td>Nipun sandeepa</td>
             <td>Nipun@gmail.com</td>
             <td><button>delete</button></td>
         </tr>
@@ -109,12 +83,7 @@ function ManageUsers() {
        
         </div>
 
-       
 
-        
-	
-       
-	</div>
   )
 }
 

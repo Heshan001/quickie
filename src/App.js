@@ -17,6 +17,7 @@ import ManageCourses from './routes/admin/manageCourses.jsx'
 import ManageComments from './routes/admin/manageComments.jsx'
 import InstituteDash from './routes/institute/dashboard.jsx'
 import InstituteManageCourses from './routes/institute/manageCourses.jsx'
+import ManageNews from './routes/admin/manageNews.jsx'
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route path = '/mangeEvents' element = {<ManageEvents/>}/>  
         <Route path = '/mangeCourses' element = {<ManageCourses/>}/>
         <Route path = '/mangeComments' element = {<ManageComments/>}/>  
+        <Route path = '/mangeNews' element = {<ManageNews/>}/>  
       </Route>
     )
   )
