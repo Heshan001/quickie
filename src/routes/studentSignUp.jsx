@@ -1,66 +1,67 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../styles/studentSignUp.css';
 import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-
 function StudentSignUp() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const inputs = [
         {
             type: 'text',
             id: 'fName',
             name: 'fName',
             label: 'First Name',
-            value : 'this.state.fName'
         },
         {
             type: 'text',
             id: 'lName',
             name: 'lName',
             label: 'Last Name',
-            value : 'this.state.lName'
-
         },
         {
             type: 'email',
             id: 'email',
             name: 'email',
             label: 'E Mail',
-            value : 'this.state.email'
         },
         {
             type: 'password',
             id: 'password',
             name: 'password',
             label: 'Password',
-            value : 'this.state.password'
         }
     ];
 
-    const [state, setState] =  useState({
-        fName : '',
-        lName : '',
-        email : '',
-        password : ''
+    const [state, setState] = useState({
+        fName: '',
+        lName: '',
+        email: '',
+        password: ''
     })
 
     const handleInput = (e) => {
         setState({
             ...state,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         });
     }
 
-    const saveStudent = async (e) =>{
+    const saveStudent = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post('/api/add-student', state )
-
-
+        const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
+        if (res.data.status === 200) {
+            console.log(res.data.message);
+            setState({
+                fName: '',
+                lName: '',
+                email: '',
+                password: ''
+            })
+        }
     }
 
     return (
@@ -75,23 +76,20 @@ function StudentSignUp() {
             <div className="signUpForm">
                 <h1>Student SignUp</h1>
 
-                <form action="" onSubmit={this.saveStudent}>
-                     {inputs.map(({ label, id, type, name, value }, index) => (
+                <form action="" onSubmit={saveStudent}>
+                    {inputs.map(({ label, id, type, name }, index) => (
                         <div className="inputs" key={index}>
-                            
-                            <input onChange={this.handleInput} type={type} id={id} name={name} value={value} placeholder={label} />
+                            <input onChange={handleInput} type={type} id={id} name={name} value={state[name]} placeholder={label} />
                         </div>
                     ))}
 
-                    <button onClick={() => navigate('/Login')}>Sign Up</button>
+                    <button type="submit">Sign Up</button>
 
                     <p>I have already account. <a href="#">Login</a> </p>
 
                 </form>
-                   
-               
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
