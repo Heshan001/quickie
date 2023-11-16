@@ -4,24 +4,29 @@ import '../styles/admin/sideBar.css'
 function SideBar() {
 
     const SideItems = [
+
+        {
+            link : '/dashboard',
+            name : 'Dashboard'
+        },
         {
             link : '/mangeUsers',
-            name : 'Mange Users'
+            name : 'Manage Users'
         },
 
         {
             link : '/mangeEvents',
-            name : 'Mange Events'
+            name : 'Manage Events'
         },
 
         {
             link : '/mangeCourses',
-            name : 'Mange Courses'
+            name : 'Manage Courses'
         },
 
         {
             link : '/mangeComments',
-            name : 'Mange Comments'
+            name : 'Manage Comments'
         }
     ]
   return (

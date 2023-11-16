@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/login.css';
 import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function StudentSignUp() {
     const navigate = useNavigate()
@@ -10,18 +11,41 @@ function StudentSignUp() {
         
         {
             type: 'email',
-            id: 'email',
             name: 'email',
             label: 'E Mail',
         },
         {
             type: 'password',
-            id: 'password',
             name: 'password',
             label: 'Password',
         },
       
     ];
+
+    const [state, setState] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleInput = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const saveLogin = async (e) => {
+        e.preventDefault();
+
+        const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
+        if (res.data.status === 200) {
+            console.log(res.data.message);
+            setState({
+                email: '',
+                password: ''
+            })
+        }
+    }
 
     return (
         <div>
@@ -35,11 +59,11 @@ function StudentSignUp() {
             <div className="signInForm">
                 <h1>Sign In</h1>
 
-                <form action="">
-                     {SignIn.map(({ label, id, type, name }, index) => (
+                <form action="" onSubmit={saveLogin}>
+                     {SignIn.map(({ label, type, name }, index) => (
                         <div className="inputs" key={index}>
                             
-                            <input type={type} id={id} placeholder={label} />
+                            <input onChange={handleInput} type={type} value={state[name]} name={name} placeholder={label} />
                         </div>
                     ))}
 

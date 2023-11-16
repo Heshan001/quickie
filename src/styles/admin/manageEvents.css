@@ -1,0 +1,59 @@
+.news{
+    text-align: center;
+    background-color: rgb(210, 210, 209);
+    width: 100%;
+    height: 80vh;
+   margin-top: 2%;
+    border-radius: 10px;
+    
+}
+
+.news h1{
+    padding-top: 3%;
+}
+
+
+
+.inputSection .newsInput{
+    display: flex;
+}
+
+.inputSection form{
+    margin-top: 1%;
+    margin-left: 28%;
+    
+
+}
+
+.inputSection form input{
+    width: 65%;
+    padding: 8px;
+    margin-top: 4%;
+    border: #585858 1px solid;
+    border-radius: 5px;
+    background: none;
+
+
+}
+
+.inputSection form textarea{
+    width: 65%;
+    padding: 8px;
+    margin-top: 4%;
+    border: #585858 1px solid;
+    border-radius: 5px;
+    background: none;
+
+
+}
+
+.inputSection button{
+    margin-top: 3%;
+    margin-left: -39%;
+    padding: 10px 25px;
+    font-size: 15px;
+    background: none;
+    border: 1px solid #585858;
+    border-radius: 5px;
+    cursor: pointer;
+}

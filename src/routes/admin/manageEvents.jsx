@@ -1,12 +1,38 @@
 import React from 'react'
 import SideBar from '../../components/sideBar'
-import '../../styles/admin/manageUsers.css'
+import '../../styles/admin/manageEvents.css'
 
 function ManageUsers() {
   return (
     <div className='mainC'>
         <div className="navSide">
         <SideBar/>
+        </div>
+
+        <div className="eventContent">
+             <div className="news">
+
+        <h1>Add News and Updates</h1>
+            <div className="inputSection">
+                <form action=""> 
+                <div className="newsInput">
+                    
+                    <input placeholder='News tiitle' type="text" />
+                </div>
+
+                <div className="newsInput">
+                    
+                   <textarea placeholder='add description' name="" id="" cols="56" rows="10"></textarea>
+                </div>
+
+                <div className="newsInput">
+                    
+                    <input type="text" />
+                </div>
+                <button type='submit'>Add</button>
+                </form>
+               
+            </div>
         </div>
 
         <div className="userTable">
@@ -81,6 +107,11 @@ function ManageUsers() {
             </table>
         </div>
        
+        </div>
+
+       
+
+        
 	
        
 	</div>

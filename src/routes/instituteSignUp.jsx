@@ -43,7 +43,7 @@ function StudentSignUp() {
         });
     }
 
-    const saveStudent = async (e) => {
+    const saveInstitute = async (e) => {
         e.preventDefault();
 
         const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
@@ -69,7 +69,7 @@ function StudentSignUp() {
             <div className="signUpForm">
                 <h1>Institute SignUp</h1>
 
-                <form action="" onSubmit={saveStudent}>
+                <form action="" onSubmit={saveInstitute}>
                     {inputs.map(({ label, id, type, name }, index) => (
                         <div className="inputs" key={index}>
                             <input onChange={handleInput} type={type} id={id} name={name} value={state[name]} placeholder={label} />

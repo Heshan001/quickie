@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import '../styles/studentSignUp.css';
 import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 function StudentSignUp() {
-    const navigate = useNavigate();
+    
 
     const inputs = [
         {
