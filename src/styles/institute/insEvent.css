@@ -1,0 +1,83 @@
+.institute{
+    display: flex;
+    gap: 10%;
+}
+
+.eventContent{
+    margin-top: 1%;
+
+}
+
+.eventContent{
+    text-align: center;
+    background-color: rgb(210, 210, 209);
+    width: 50%;
+    height: 80vh;
+    border-radius: 10px;
+    
+}
+
+.eventContent h2{
+    margin-top: 2%;
+}
+
+.eventContent form{
+    margin-top: 3%;
+    width: 100%;
+    
+
+}
+
+.eventContent form input{
+    width: 45%;
+    padding: 8px;
+    margin-top: 2%;
+    border: #585858 1px solid;
+    border-radius: 5px;
+    background: none;
+
+}
+
+button{
+    margin-top: 3%;
+    padding: 10px 15px;
+    font-size: 15px;
+    background: none;
+    border: 1px solid #585858;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.insEventTable{
+    margin-top: 3%;
+}
+
+.insEventTable h1{
+    font-size: 25px;
+}
+
+
+ .insEventTable table{
+    border-collapse: collapse;
+    font-size: 15px;
+    min-width: 400px;
+    background-color: rgb(222, 222, 224);
+    margin-top: 1%;
+
+
+ }
+
+ .insEventTable table thead tr{
+    text-align: left;
+    background-color: rgb(141, 142, 142);
+ }
+
+ .insEventTable th, .insEventTable td{
+    padding: 12px 150px;
+ }
+
+ .insEventTable{
+    margin-left: 27%;
+    margin-top: -10%;
+    
+ }

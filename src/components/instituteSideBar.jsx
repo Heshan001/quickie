@@ -8,7 +8,7 @@ function SideBar() {
     const SideItems = [
 
         {
-            link : '/dashboard',
+            link : '/instituteDash',
             name : 'Dashboard'
         },
 
@@ -20,11 +20,6 @@ function SideBar() {
         {
             link : '/insEvent',
             name : 'Mange Events'
-        },
-
-        {
-            link : '/mangeCourses',
-            name : 'Mange Courses'
         }
 
     ]
