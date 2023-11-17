@@ -20,13 +20,21 @@
     gap: 20px;
 }
 
-.newsItem{
-    display: flex;
+.newsItem{ 
   width: 20%;
-  height: 40vh;
+  height: 43vh;
   background-color: #eceaea;
-  border-radius: 10px;
-  
-    
-    
+  border-radius: 10px; 
+  box-shadow: 1px 1px 10px 0px rgb(190, 190, 190);
+}
+
+.newsItem h2{
+    margin-top: 2%;
+}
+
+.newsItem img{
+    width: 80%;
+    height: 20vh;
+    margin-top: 2%;
+    border-radius: 5%;
 }

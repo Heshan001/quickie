@@ -67,7 +67,7 @@ function StudentSignUp() {
                         </div>
                     ))}
 
-                    <button onClick={() => navigate('/mainHome')}>Sign Up</button>
+                    <button className='buttons' onClick={() => navigate('/mainHome')}>Sign Up</button>
 
                 </form>
                    

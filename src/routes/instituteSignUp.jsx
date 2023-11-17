@@ -76,7 +76,7 @@ function StudentSignUp() {
                         </div>
                     ))}
 
-                    <button type="submit" onClick={() => navigate('/Login')}>Sign Up</button>
+                    <button className='submitButton' type="submit" onClick={() => navigate('/Login')}>Sign Up</button>
 
                     <p> I have already account. <Link to="/Login">Login</Link>{' '}</p>
 

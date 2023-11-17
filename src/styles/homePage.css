@@ -59,8 +59,9 @@
 .features .fCard{
     color:rgb(220, 220, 220) ;
     border: 3px solid rgb(220, 220, 220);
-    padding: 15px 35px;
+    padding: 12px 30px;
     font-size: 15px;
+    box-shadow: 1px 1px 10px 0px rgb(153, 152, 152);
 }
 
 .icon{
@@ -84,8 +85,9 @@
 .card{
     width: 20%;
     padding: 10px 15px;
-   border: 2px solid rgb(115, 115, 115);
-   border-radius: 2px;
+    background-color: rgb(214, 255, 226);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 0px rgb(190, 190, 190);
     
     
 }
@@ -103,7 +105,7 @@
 
 .card button{
     padding: 6px 10px;
-    margin-top: 2%;
+    margin-top: 4%;
     cursor: pointer;
     border: 1px solid;
 }

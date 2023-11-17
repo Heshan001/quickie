@@ -20,8 +20,8 @@ function Selection() {
           <hr />
           <p>Welcome to quickie, your premier resource for AI courses. Whether you're an aspiring AI enthusiast or an experienced professional, we're here to support your growth. Our platform streamlines your quest for the ideal AI course,</p>
           <div className="btn">
-            <button onClick={() => navigate('/StudentSignUp')}>Student</button>
-            <button onClick={() => navigate('/InstituteSignUp')}>Institute</button>
+            <button className='buttons' onClick={() => navigate('/StudentSignUp')}>Student</button>
+            <button className='buttons' onClick={() => navigate('/InstituteSignUp')}>Institute</button>
           </div>
         </div>
         

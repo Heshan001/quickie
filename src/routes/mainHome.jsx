@@ -104,9 +104,7 @@ function MainHome(){
       <div className="filterSection">
         <div className="search">
             <input type="text" placeholder='search' className='searchTerm' />
-             <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
+             
         </div>
         <div className="filter">
             <input type="text" placeholder='subject'  />

@@ -1,14 +1,20 @@
 export const news2 = [
     {
-        content : "lorem pewk 2iij 3fjievjije"
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        content : "lorem pewk 2iij 3fjievjije"
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        content : "lorem pewk 2iij 3fjievjije"
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     }
 
 ]

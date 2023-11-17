@@ -7,93 +7,75 @@ function Events() {
 
 const cards = [
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     },
 
     {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
-    },
-
-    {
-        title:'title1',
-        content:'ewfm qpomdw 2im 2 2mem '
+        title : 'News 2',
+        image : './images/card.jpg',
+        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
     }
 
 ]
@@ -116,6 +98,7 @@ const cards = [
                 return(
                     <div className="card" key={index}>
                         <h2>{item.title}</h2>
+                        <img src={item.image} alt="" />
                         <p>{item.content}</p>
                     </div>
                 )

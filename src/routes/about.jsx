@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/about.css'
 import NavBar from '../components/navBar'
+import Footer from '../components/footer'
+
 
 function About() {
   return (
@@ -21,7 +23,11 @@ function About() {
 
             At quickie, our mission is clear: to empower individuals in their pursuit of higher education. We believe that the path to success begins with the right educational choice. Whether you're a recent high school graduate, a working professional seeking further qualifications, or anyone in between, we are here to guide you through the complex landscape of degree programs
             </p>
+
+            <button className='aboutButton'>Explore Courses</button>
         </div>
+
+        <Footer/>
     </div>
   )
 }

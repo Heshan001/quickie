@@ -36,6 +36,8 @@ function News() {
           {
             getProductArray()?.map((item, index) => (
               <div className="newsItem" key={index}>
+                <h2>{item.title}</h2>
+                <img src={item.image} alt="" />
                  <p>{item.content}</p>
               </div>
              

@@ -84,7 +84,7 @@ function StudentSignUp() {
                         </div>
                     ))}
 
-                    <button type="submit">Sign Up</button>
+                    <button id='submitButton' className='submitButton' type="submit">Sign Up</button>
 
                     <p> I have already account. <Link to="/Login">Login</Link>{' '}</p>
 
