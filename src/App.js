@@ -16,6 +16,7 @@ import ManageEvents from './routes/admin/manageEvents.jsx'
 import ManageCourses from './routes/admin/manageCourses.jsx'
 import ManageComments from './routes/admin/manageComments.jsx'
 import InstituteDash from './routes/institute/dashboard.jsx'
+import InsEvent from './routes/institute/insEvent.jsx'
 import InstituteManageCourses from './routes/institute/insManageCourses.jsx'
 import ManageNews from './routes/admin/manageNews.jsx'
 import InsManageCourses from './routes/institute/insManageCourses.jsx'
@@ -46,6 +47,7 @@ const App = () => {
         <Route path = '/mangeComments' element = {<ManageComments/>}/>  
         <Route path = '/mangeNews' element = {<ManageNews/>}/>  
         <Route path = '/insManageCourses' element = {<InsManageCourses/>}/> 
+        <Route path = '/insEvent' element = {<InsEvent/>}/> 
       </Route>
     )
   )

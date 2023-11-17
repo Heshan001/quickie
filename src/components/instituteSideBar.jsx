@@ -18,7 +18,7 @@ function SideBar() {
         },
 
         {
-            link : '/mangeEvents',
+            link : '/insEvent',
             name : 'Mange Events'
         },
 
