@@ -2,10 +2,13 @@ import React from 'react'
 import NavBar from '../components/navBar'
 import '../styles/mainHome.css'
 import Footer from '../components/footer'
+import { useNavigate } from 'react-router-dom'
 
 
 
 function MainHome(){
+
+  const navigate = useNavigate()
 
     const mainContent = [
         {
@@ -110,7 +113,7 @@ function MainHome(){
             <input type="text" placeholder='subject'  />
             <input type="text" placeholder='result' />
             <input type="text " placeholder='Z score' />
-            <button type='submit'>Filter</button>
+            <button className='filterButton' type='submit'>Filter</button>
         </div>
       </div>
 
@@ -122,7 +125,7 @@ function MainHome(){
               <h3>{item.title}</h3>
               <img className='images' src={item.image} alt="" />
               <p>{item.content}</p>
-              <button>View more</button>
+              <button onClick={() => navigate('/course')}>View more</button>
             </div>
           )
          }) 
