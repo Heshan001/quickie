@@ -4,9 +4,12 @@ import NavBar from '../components/navBar.jsx';
 import Footer from '../components/footer'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function StudentSignUp() {
+
+    const navigate = useNavigate()
     
 
     const inputs = [
@@ -53,16 +56,30 @@ function StudentSignUp() {
     const saveStudent = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
-        if (res.data.status === 200) {
-            console.log(res.data.message);
-            setState({
-                fName: '',
-                lName: '',
-                email: '',
-                password: ''
-            })
+        try {
+            const res = await axios.post('http://127.0.0.1:8000/api/add-student', state);
+
+            if (res.data.status === 200) {
+                console.log(res.data.message);
+                setState({
+                    fName:'',
+                    lName : '',
+                    email: '',
+                    password: ''
+                });
+
+                // Assuming authentication is successful, navigate to the home page
+                navigate('/mainHome');
+            } else {
+                // Handle other cases if needed
+                console.log('Authentication failed:', res.data.message);
+            }
+        } catch (error) {
+            // Handle errors
+            console.error('Error during authentication:', error);
         }
+
+        
     }
 
     return (
