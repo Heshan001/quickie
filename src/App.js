@@ -1,5 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 
+// GUARDS
+import AuthGuard from "./guards/AuthGuard.jsx";
+
 import Dashboard from "./pages/admin/dashBoard.jsx";
 import ManageUsers from "./pages/admin/manageUsers.jsx";
 import ManageEvents from "./pages/admin/manageEvents.jsx";
@@ -23,6 +26,7 @@ import NotFound from "./pages/errors/NotFound.jsx";
 // STUDENT PRIVATE ROUTES
 import StudentHome from "./pages/mainHome.jsx";
 import Course from "./pages/course.jsx";
+import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
 
 function App() {
   return (
@@ -36,22 +40,99 @@ function App() {
       <Route path="/StudentSignUp" element={<StudentSignUp />} />
       <Route path="/InstituteSignUp" element={<InstituteSignUp />} />
       {/* STUDENT PRIVATE ROUTES  */}
-      <Route path="/student/mainHome" element={<StudentHome />} />
-      <Route path="/student/course" element={<Course />} />
+      <Route
+        path="/student/mainHome"
+        element={
+          <AuthGuard>
+            <StudentHome />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/student/course"
+        element={
+          <AuthGuard>
+            <Course />
+          </AuthGuard>
+        }
+      />
 
       {/* ADMIN PRIVATE ROUTES  */}
-      <Route path="/admin/dashBoard" element={<Dashboard />} />
-      <Route path="/admin/manageUsers" element={<ManageUsers />} />
-      <Route path="/admin/manageEvents" element={<ManageEvents />} />
-      <Route path="/admin/manageCourses" element={<ManageCourses />} />
-      <Route path="/admin/manageComments" element={<ManageComments />} />
-      <Route path="/admin/manageNews" element={<ManageNews />} />
+      <Route
+        path="/admin/dashBoard"
+        element={
+          <AuthGuard>
+            <Dashboard />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageUsers"
+        element={
+          <AuthGuard>
+            <ManageUsers />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageEvents"
+        element={
+          <AuthGuard>
+            <ManageEvents />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageCourses"
+        element={
+          <AuthGuard>
+            <ManageCourses />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageComments"
+        element={
+          <AuthGuard>
+            <ManageComments />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageNews"
+        element={
+          <AuthGuard>
+            <ManageNews />
+          </AuthGuard>
+        }
+      />
       {/* ... other admin routes ... */}
 
       {/* INSTITUTE PRIVATE ROUTES   */}
-      <Route path="/instituteDash" element={<InstituteDash />} />
-      <Route path="/insEvent" element={<InsEvent />} />
-      <Route path="/insManageCourses" element={<InsManageCourses />} />
+      <Route
+        path="/instituteDash"
+        element={
+          <AuthGuard>
+            <InstituteDash />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/insEvent"
+        element={
+          <AuthGuard>
+            <InsEvent />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/insManageCourses"
+        element={
+          <AuthGuard>
+            <InsManageCourses />
+          </AuthGuard>
+        }
+      />
       {/* ... other institute routes ... */}
       <Route path="*" element={<NotFound />} />
     </Routes>
