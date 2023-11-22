@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import InstituteSideBar from '../../../components/instituteSideBar'
+import InstituteSideBar from '../../components/instituteSideBar'
 import '../../styles/institute/insManageCourses.css'
 import axios from 'axios'
 

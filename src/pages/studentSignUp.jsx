@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/studentSignUp.css";
-import NavBar from "../../components/navBar.jsx";
-import Footer from "../../components/footer.jsx";
+import NavBar from "../components/navBar.jsx";
+import Footer from "../components/footer.jsx";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

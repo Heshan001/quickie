@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/homePage.css";
-import NavBar from "../../components/navBar";
+import NavBar from "../components/navBar";
 import News from "./news";
-import Footer from "../../components/footer";
+import Footer from "../components/footer";
 
 function HomePage() {
   const navigate = useNavigate();

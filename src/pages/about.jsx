@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/about.css'
-import NavBar from '../../components/navBar'
-import Footer from '../../components/footer'
+import NavBar from '../components/navBar'
+import Footer from '../components/footer'
 
 
 function About() {

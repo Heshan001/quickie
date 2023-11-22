@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/news.css";
 import { useState } from "react";
-import { news1 } from "../../components/news1";
-import { news2 } from "../../components/news2";
+import { news1 } from "../components/news1";
+import { news2 } from "../components/news2";
 
 function News() {
   const [newsId, setNewsId] = useState(0);
