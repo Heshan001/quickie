@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../../components/navBar";
+import NavBar from "../components/navBar";
 import "../styles/mainHome.css";
-import Footer from "../../components/footer";
+import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 
 function MainHome() {
