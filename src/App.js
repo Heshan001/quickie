@@ -1,6 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import StudentSignUp from './routes/studentSignUp';
-import InstituteSignUp from './routes/instituteSignUp.jsx';
 import Selection from './routes/selection.jsx';
 import HandleAuth from './auth/handleAuth.jsx';
 import HandleUserLevels from './auth/handleUserLevels.jsx';
