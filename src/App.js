@@ -1,56 +1,140 @@
-import { Route, Routes } from 'react-router-dom';
-import StudentSignUp from './routes/studentSignUp';
-import InstituteSignUp from './routes/instituteSignUp.jsx';
-import Selection from './routes/selection.jsx';
-import HandleAuth from './auth/handleAuth.jsx';
-import HandleUserLevels from './auth/handleUserLevels.jsx';
-import Dashboard from './routes/admin/dashBoard.jsx';
-import ManageUsers from './routes/admin/manageUsers.jsx';
-import ManageEvents from './routes/admin/manageEvents.jsx';
-import ManageCourses from './routes/admin/manageCourses.jsx';
-import ManageComments from './routes/admin/manageComments.jsx';
-import InstituteDash from './routes/institute/dashboard.jsx';
-import InsEvent from './routes/institute/insEvent.jsx';
-import ManageNews from './routes/admin/manageNews.jsx';
-import InsManageCourses from './routes/institute/insManageCourses.jsx';
+import { Route, Routes } from "react-router-dom";
 
-const loggedUserEmail = localStorage.getItem('user_email');
-const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+// GUARDS
+import AuthGuard from "./guards/AuthGuard.jsx";
+
+import Dashboard from "./pages/admin/dashBoard.jsx";
+import ManageUsers from "./pages/admin/manageUsers.jsx";
+import ManageEvents from "./pages/admin/manageEvents.jsx";
+import ManageCourses from "./pages/admin/manageCourses.jsx";
+import ManageComments from "./pages/admin/manageComments.jsx";
+import InstituteDash from "./pages/institute/dashboard.jsx";
+import InsEvent from "./pages/institute/insEvent.jsx";
+import ManageNews from "./pages/admin/manageNews.jsx";
+import InsManageCourses from "./pages/institute/insManageCourses.jsx";
+
+// PUBLIC ROUTES
+import HomePage from "./pages/index.jsx";
+import AboutPage from "./pages/about.jsx";
+import EventPage from "./pages/events.jsx";
+import ContactPage from "./pages/contact.jsx";
+import Selection from "./pages/selection.jsx";
+import StudentSignUp from "./pages/studentSignUp.jsx";
+import InstituteSignUp from "./pages/instituteSignUp.jsx";
+import NotFound from "./pages/errors/NotFound.jsx";
+
+// STUDENT PRIVATE ROUTES
+import StudentHome from "./pages/mainHome.jsx";
+import Course from "./pages/course.jsx";
+import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
 
 function App() {
-  const userType = loggedUserEmail === adminEmail ? 'admin' : 'user';
-
   return (
     <Routes>
+      {/* PUBLIC ROUTES */}
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/event" element={<EventPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/selection" element={<Selection />} />
+      <Route path="/StudentSignUp" element={<StudentSignUp />} />
+      <Route path="/InstituteSignUp" element={<InstituteSignUp />} />
+      {/* STUDENT PRIVATE ROUTES  */}
+      <Route
+        path="/student/mainHome"
+        element={
+          <AuthGuard>
+            <StudentHome />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/student/course"
+        element={
+          <AuthGuard>
+            <Course />
+          </AuthGuard>
+        }
+      />
 
-      <Route element={<HandleAuth />}>
-        <Route
-          path="/homePage"
-          element={<HandleUserLevels userType={userType} isAdmin={userType === 'admin'} />}
-        />
+      {/* ADMIN PRIVATE ROUTES  */}
+      <Route
+        path="/admin/dashBoard"
+        element={
+          <AuthGuard>
+            <Dashboard />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageUsers"
+        element={
+          <AuthGuard>
+            <ManageUsers />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageEvents"
+        element={
+          <AuthGuard>
+            <ManageEvents />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageCourses"
+        element={
+          <AuthGuard>
+            <ManageCourses />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageComments"
+        element={
+          <AuthGuard>
+            <ManageComments />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/admin/manageNews"
+        element={
+          <AuthGuard>
+            <ManageNews />
+          </AuthGuard>
+        }
+      />
+      {/* ... other admin routes ... */}
 
-        {userType === 'admin' && (
-          <>
-            <Route path="/dashBoard" element={<Dashboard />} />
-            <Route path="/manageUsers" element={<ManageUsers />} />
-            <Route path="/manageEvents" element={<ManageEvents />} />
-            <Route path="/manageCourses" element={<ManageCourses />} />
-            <Route path="/manageComments" element={<ManageComments />} />
-            <Route path="/manageNews" element={<ManageNews />} />
-            {/* ... other admin routes ... */}
-          </>
-        )}
-
-        {userType === 'institute' && (
-          <>
-            <Route path="/instituteDash" element={<InstituteDash />} />
-            <Route path="/insEvent" element={<InsEvent />} />
-            <Route path="/insManageCourses" element={<InsManageCourses />} />
-            {/* ... other institute routes ... */}
-          </>
-        )}
-      </Route>
+      {/* INSTITUTE PRIVATE ROUTES   */}
+      <Route
+        path="/instituteDash"
+        element={
+          <AuthGuard>
+            <InstituteDash />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/insEvent"
+        element={
+          <AuthGuard>
+            <InsEvent />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/insManageCourses"
+        element={
+          <AuthGuard>
+            <InsManageCourses />
+          </AuthGuard>
+        }
+      />
+      {/* ... other institute routes ... */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
