@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../components/navBar";
 import "../styles/mainHome.css";
 import Footer from "../components/footer";
+import Logout from "../components/logout"
 import { useNavigate } from "react-router-dom";
 
 function MainHome() {
@@ -94,8 +95,13 @@ function MainHome() {
   ];
   return (
     <div>
-      <div className="nav">
-        <NavBar />
+      <div className="nav">  
+
+    <div className="mainNav">
+       <NavBar /> 
+       <Logout/>
+      </div>    
+         
         <hr />
       </div>
       <div className="filterSection">

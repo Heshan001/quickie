@@ -27,15 +27,16 @@ import NotFound from "./pages/errors/NotFound.jsx";
 import StudentHome from "./pages/mainHome.jsx";
 import Course from "./pages/course.jsx";
 import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
+import MainHome from "./pages/mainHome.jsx";
 
 function App() {
   return (
     <Routes>
       {/* PUBLIC ROUTES */}
       <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
+      <Route path="/about" element={<AboutPage />} />     
       <Route path="/event" element={<EventPage />} />
-      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/contact" element={<MainHome />} />
       <Route path="/selection" element={<Selection />} />
       <Route path="/StudentSignUp" element={<StudentSignUp />} />
       <Route path="/InstituteSignUp" element={<InstituteSignUp />} />

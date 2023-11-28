@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+
+.mainNav{
+    display: flex;
+    margin-left: 30%;
+}
+
+
+
 .nav hr{
     width: 40%;
     margin-top: 1%;

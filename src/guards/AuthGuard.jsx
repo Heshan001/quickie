@@ -1,14 +1,39 @@
 import React from "react";
-import { Navigate } from "react-router-dom/dist";
+import { Navigate } from "react-router-dom";
+
+
+const ADMIN_ROLE = "admin";
+const INSTITUTE_ROLE = "institute";
+
+
 function AuthGuard({ children }) {
-  // todo: check user is Aenticated
-  const user = localStorage.getItem("user");
-  
+  // todo: check user is Authenticated
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user.role;
+
+
+
+
   if (user) {
-    return children;
+
+    if (role === ADMIN_ROLE) {
+      return <Navigate to="/dashboard" />;
+    }
+
+    if (role === INSTITUTE_ROLE) {
+      return <Navigate to="/instituteDash" />;
+    }
+    else {
+      return children;
+    }
+
   } else {
     return <Navigate to="/login" />;
   }
+
+
+
+
 }
 
 export default AuthGuard;
