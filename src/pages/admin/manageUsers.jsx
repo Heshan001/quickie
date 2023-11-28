@@ -15,7 +15,7 @@ function ManageUsers() {
             <table>
             <thead>
         <tr>
-            <th>Name</th>
+            <th>Institute Name</th>
             <th>Email</th>
             <th>Delete User</th>
         </tr>
