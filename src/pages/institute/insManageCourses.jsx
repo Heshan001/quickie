@@ -11,12 +11,7 @@ function ManageCourses() {
       id : 'courseName',
       type : 'text'
     },
-
-    {
-      name:'Institute Name',
-      id : 'instituteName',
-      type : 'text'
-    },
+ 
 
     {
       name:'Course Overview',

@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001/"
+const baseUrl = "http://localhost:8000/"
 
 const fetchUser = async () => {
     const response = await fetch('${baseUrl' / user, {

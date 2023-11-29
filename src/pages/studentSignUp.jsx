@@ -9,30 +9,36 @@ import { useNavigate } from "react-router-dom";
 function StudentSignUp() {
   const navigate = useNavigate();
 
+  // const baseUrl = "http://127.0.0.1:8000/";
+
   const inputs = [
     {
       type: "text",
       id: "fName",
       name: "fName",
       label: "First Name",
+      autocomplete: "given-name"
     },
     {
       type: "text",
       id: "lName",
       name: "lName",
       label: "Last Name",
+      autocomplete: "second-name"
     },
     {
       type: "email",
       id: "email",
       name: "email",
       label: "E Mail",
+      autocomplete: "email",
     },
     {
       type: "password",
       id: "password",
       name: "password",
       label: "Password",
+      autocomplete: "password"
     },
   ];
 
@@ -50,12 +56,16 @@ function StudentSignUp() {
     });
   };
 
+ 
+
   const saveStudent = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+
+    console.log("submit")
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/signup",
+        `http://127.0.0.1:8000/api/signup`,
         state
       );
 
@@ -92,8 +102,12 @@ function StudentSignUp() {
       <div className="signUpForm">
         <h1>Student SignUp</h1>
 
-        <form action="" onSubmit={saveStudent}>
-          {inputs.map(({ label, id, type, name }, index) => (
+        <form action="" onSubmit={(e) => {
+          // e.preventDefault()
+          // saveStudent(e)
+          console.log("Form submitted!")
+        }}>
+          {inputs.map(({ label, id, type, name, autocomplete }, index) => (
             <div className="inputs" key={index}>
               <input
                 onChange={handleInput}
@@ -102,11 +116,16 @@ function StudentSignUp() {
                 name={name}
                 value={state[name]}
                 placeholder={label}
+                autocomplete={autocomplete}
               />
             </div>
           ))}
 
-          <button id="submitButton" className="submitButton" type="submit">
+          <button id="submitButton" onClick={ () => {
+            
+            saveStudent()
+          }}
+           className="submitButton" type="submit">
             Sign Up
           </button>
 
