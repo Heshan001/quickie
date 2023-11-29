@@ -1,4 +1,4 @@
-import React from "react";
+import  React from "react";
 import "../styles/news.css";
 import { useState } from "react";
 import { news1 } from "../components/news1";

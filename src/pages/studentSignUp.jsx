@@ -103,8 +103,8 @@ function StudentSignUp() {
         <h1>Student SignUp</h1>
 
         <form action="" onSubmit={(e) => {
-          // e.preventDefault()
-          // saveStudent(e)
+          e.preventDefault()
+          saveStudent(e)
           console.log("Form submitted!")
         }}>
           {inputs.map(({ label, id, type, name, autocomplete }, index) => (
