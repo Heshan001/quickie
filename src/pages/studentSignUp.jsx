@@ -122,7 +122,7 @@ function StudentSignUp() {
           ))}
 
           <button id="submitButton" onClick={ () => {
-            
+            console.log('button clicked')
             saveStudent()
           }}
            className="submitButton" type="submit">
