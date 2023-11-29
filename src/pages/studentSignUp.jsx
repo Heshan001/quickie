@@ -55,7 +55,7 @@ function StudentSignUp() {
       [e.target.name]: e.target.value,
     });
   };
-
+ 
  
 
   const saveStudent = async (e) => {
