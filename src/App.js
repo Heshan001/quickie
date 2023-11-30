@@ -27,7 +27,7 @@ import NotFound from "./pages/errors/NotFound.jsx";
 import StudentHome from "./pages/mainHome.jsx";
 import Course from "./pages/course.jsx";
 import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
-import MainHome from "./pages/mainHome.jsx";
+
 
 function App() {
   return (

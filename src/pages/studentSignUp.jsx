@@ -60,8 +60,6 @@ function StudentSignUp() {
  
 
   const saveStudent = async (e) => {
-    e.preventDefault()
-
     console.log("submit")
 
     try {
@@ -83,7 +81,7 @@ function StudentSignUp() {
         });
 
         // Assuming authentication is successful, navigate to the home page
-        navigate("/mainHome");
+        navigate("/StudentHome");
       } else {
         // Handle other cases if needed
         console.log("Authentication failed:", res.data.message);
@@ -125,7 +123,11 @@ function StudentSignUp() {
             </div>
           ))}
 
-          <button id="submitButton"
+          <button id="submitButton" onClick={(e)=> {
+            
+            saveStudent(e)
+            console.log("clicked")
+          }} 
            className="submitButton" type="submit">
             Sign Up
           </button>
