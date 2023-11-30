@@ -13,14 +13,7 @@ function InsEvent() {
             id : 'eventName',
             type : 'text'
 
-        },
-
-        {
-            name : 'Institute Name',
-            id : 'instituteName',
-            type : 'text'
-
-        },
+        },        
 
         {
             name : 'Event Description',
