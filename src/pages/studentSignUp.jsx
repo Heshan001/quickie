@@ -47,6 +47,7 @@ function StudentSignUp() {
     lName: "",
     email: "",
     password: "",
+    role:"student"
   });
 
   const handleInput = (e) => {
@@ -59,15 +60,18 @@ function StudentSignUp() {
  
 
   const saveStudent = async (e) => {
-    // e.preventDefault();
+    e.preventDefault()
 
     console.log("submit")
 
     try {
+      
       const res = await axios.post(
         `http://127.0.0.1:8000/api/signup`,
         state
       );
+
+      
 
       if (res.data.status === 200) {
         console.log(res.data.message);
@@ -121,10 +125,7 @@ function StudentSignUp() {
             </div>
           ))}
 
-          <button id="submitButton" onClick={ () => {
-            console.log('button clicked')
-            saveStudent()
-          }}
+          <button id="submitButton"
            className="submitButton" type="submit">
             Sign Up
           </button>
