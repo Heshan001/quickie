@@ -47,19 +47,20 @@ function SignIn({ userType }) {
   const handleCallBack = (data, status) => {
     if (status === 200) {
       localStorage.setItem("userToken", data.data.token);
+      //  TODO: FETCH AUTHENTICATED USER
+      //  TODO: SAVE AUTHENTICATED USER IN LOCAL STORAGE
 
-      if (adminEmail === credentials.email) {
-        navigate("/dashboard", { replace: true });
-      } else {
-        // Add logic to differentiate between institute and student users
-        if (userType === "institute") {
-          navigate("/instituteDash", { replace: true });
-        } else {
-          navigate("/mainHome", { replace: true });
-        }
+      navigate("/dashboard", { replace: true });
+      
+      // if (adminEmail === credentials.email) {
+      // } else {
+      //   // Add logic to differentiate between institute and student users
+      //   if (userType === "institute") {
+      //     navigate("/instituteDash", { replace: true });
+      //   } else {
+      //     navigate("/mainHome", { replace: true });
+      //   }
       }
-
-      window.location.reload();
     } else {
       openNotification(status);
     }

@@ -28,13 +28,12 @@ import StudentHome from "./pages/mainHome.jsx";
 import Course from "./pages/course.jsx";
 import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
 
-
 function App() {
   return (
     <Routes>
       {/* PUBLIC ROUTES */}
       <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />     
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/event" element={<EventPage />} />
       <Route path="/contact" element={<Dashboard />} />
       <Route path="/selection" element={<Selection />} />
@@ -45,7 +44,9 @@ function App() {
         path="/student/mainHome"
         element={
           <AuthGuard>
-            <StudentHome />
+            <AdminRoleGuard>
+              <StudentHome />
+            </AdminRoleGuard>
           </AuthGuard>
         }
       />
