@@ -23,7 +23,7 @@ function InsEvent() {
 
         {
             name : 'Add Image',
-            id : 'addImage',
+            id : 'Image',
             type : 'file'
         }
 

@@ -19,6 +19,7 @@ function InsManageCourses() {
     addImage: ""
   }
 
+<<<<<<< HEAD
   // const validationSchema = yup.object({
   //   courseName: yup.string().required("course name is required"),
   //   courseOverview: yup.string().required("course overview is required"),
@@ -30,6 +31,13 @@ function InsManageCourses() {
 
   const addCourse = async (values, FormikAction) => {
     FormikAction.setSubmitting(true)
+=======
+    {
+      name:'Minimum Result',
+      id : 'minimumResult',
+      type : 'text'
+    },
+>>>>>>> a39d007d599266e283733f05b00d4023f5b75928
 
     try {
       await axios.post(`http://127.0.0.1:8000/api/course/store`, {
