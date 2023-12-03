@@ -26,12 +26,6 @@ function ManageCourses() {
     },
 
     {
-      name:'Course Payment',
-      id : 'coursePayment',
-      type : 'text'
-    },
-
-    {
       name:'Minimum Result',
       id : 'minimumResult',
       type : 'text'
