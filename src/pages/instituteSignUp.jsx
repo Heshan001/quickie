@@ -1,64 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/studentSignUp.css";
 import NavBar from "../components/navBar.jsx";
 import Footer from "../components/footer.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import { Formik } from 'formik';
 import axios from "axios";
+import * as yup from 'yup';
 
 function StudentSignUp() {
   const navigate = useNavigate();
 
-  const inputs = [
-    {
-      type: "text",
-      id: "instituteName",
-      name: "instituteName",
-      label: "Institute Name",
-    },
 
-    {
-      type: "email",
-      id: "email",
-      name: "email",
-      label: "E Mail",
-    },
-    {
-      type: "password",
-      id: "password",
-      name: "password",
-      label: "Password",
-    },
-  ];
-
-  const [state, setState] = useState({
+  const initialValues = {
     instituteName: "",
     email: "",
-    password: "",
+    password: ""
+  };
+
+
+  const validationSchema = yup.object({
+    instituteName: yup.string().required("name is required"),
+    email: yup
+      .string()
+      .email("invalid email format")
+      .required("email is required"),
+    password: yup.string().required("password is required"),
   });
 
-  const handleInput = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  };
+ 
+  const saveInstitute = async (values, FormikAction) => {
+    FormikAction.setSubmitting(true);
 
-  const saveInstitute = async (e) => {
-    e.preventDefault();
-
-    const res = await axios.post(
-      "http://127.0.0.1:8000/api/add-student",
-      state
-    );
-    if (res.data.status === 200) {
-      console.log(res.data.message);
-      setState({
-        instituteName: "",
-        email: "",
-        password: "",
+    try {
+      const res = await axios.post(`http://127.0.0.1:8000/api/signup`, {
+        instituteName: values.instituteName,
+        email: values.email,
+        password: values.password,
+        role: "admin",
       });
+
+      if (res.data.status === 200) {
+        navigate('/instituteDash');
+      } else {
+        console.log("Authentication failed", res.data.massage);
+        FormikAction.setErrors({ serverError: res.data.message });
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      FormikAction.setErrors({ serverError: "An error occurred during signup." });
     }
+
+    setTimeout(() => {
+      FormikAction.resetForm();
+      FormikAction.setSubmitting(false);
+    }, 2000);
   };
+
+
+
+ 
 
   return (
     <div>
@@ -72,33 +72,74 @@ function StudentSignUp() {
       <div className="signUpForm">
         <h1>Institute SignUp</h1>
 
-        <form action="" onSubmit={saveInstitute}>
-          {inputs.map(({ label, id, type, name }, index) => (
-            <div className="inputs" key={index}>
-              <input
-                onChange={handleInput}
-                type={type}
-                id={id}
-                name={name}
-                value={state[name]}
-                placeholder={label}
-              />
-            </div>
-          ))}
-
-          <button
-            className="submitButton"
-            type="submit"
-            onClick={() => navigate("/Login")}
-          >
-            Sign Up
-          </button>
-
-          <p>
-            {" "}
-            I have already account. <Link to="/Login">Login</Link>{" "}
-          </p>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={saveInstitute}
+          validationSchema={validationSchema}
+        >
+          {({
+            values,
+            touched,
+            errors,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <>
+              <div className="inputs">
+                <input
+                  type="text"
+                  name="instituteName"
+                  id="instituteName"
+                  placeholder="Institute name"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.instituteName}
+                />
+                {errors.instituteName && touched.instituteName ? (
+                  <span>{errors.instituteName}</span>
+                ) : null}
+              </div>
+              
+              <div className="inputs">
+                <input
+                  placeholder="E mail"
+                  name="email"
+                  id="email"
+                  type="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+              </div>
+              <div className="inputs">
+                <input
+                  placeholder="password"
+                  name="password"
+                  id="password"
+                  type="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </div>
+              <button
+                id="submitButton"
+                onClick={handleSubmit}
+                className="submitButton"
+                disabled={isSubmitting}
+                type="submit"
+              >
+                Sign Up
+              </button>
+              <p>
+                {" "}
+                I have already account. <Link to="/Login">Login</Link>{" "}
+              </p>
+            </>
+          )}
+        </Formik>
       </div>
       <Footer />
     </div>

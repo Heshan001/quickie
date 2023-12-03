@@ -1,16 +1,16 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const ADMIN_ROLE = "admin";
+const STUDENT_ROLE = "student";
 
-function AdminRoleGuard({ children }) {
+function StudentRoleGuard({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user.role;
 
-  if (role !== ADMIN_ROLE) {
-    return <Navigate to="/dashboard" />;
+  if (role !== STUDENT_ROLE) {
+    return <Navigate to="/StudentHome" />;
   }
   return children;
 }
 
-export default AdminRoleGuard;
+export default StudentRoleGuard;

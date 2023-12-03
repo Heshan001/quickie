@@ -35,7 +35,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/event" element={<EventPage />} />
-      <Route path="/contact" element={<Dashboard />} />
+      <Route path="/contact" element={<InsManageCourses />} />
       <Route path="/selection" element={<Selection />} />
       <Route path="/StudentSignUp" element={<StudentSignUp />} />
       <Route path="/InstituteSignUp" element={<InstituteSignUp />} />
@@ -44,9 +44,9 @@ function App() {
         path="/student/mainHome"
         element={
           <AuthGuard>
-            <AdminRoleGuard>
+            <studentRoleGuard>
               <StudentHome />
-            </AdminRoleGuard>
+            </studentRoleGuard>
           </AuthGuard>
         }
       />
@@ -54,7 +54,9 @@ function App() {
         path="/student/course"
         element={
           <AuthGuard>
-            <Course />
+            <studentRoleGuard>
+              <Course />
+            </studentRoleGuard>
           </AuthGuard>
         }
       />
@@ -64,7 +66,9 @@ function App() {
         path="/admin/dashBoard"
         element={
           <AuthGuard>
-            <Dashboard />
+            <AdminRoleGuard>
+              <Dashboard />
+            </AdminRoleGuard>           
           </AuthGuard>
         }
       />

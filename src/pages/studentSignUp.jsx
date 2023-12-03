@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/studentSignUp.css";
 import NavBar from "../components/navBar.jsx";
 import Footer from "../components/footer.jsx";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 
 function StudentSignUp() {
@@ -20,6 +20,7 @@ function StudentSignUp() {
   };
   const params = new URLSearchParams(location.search);
   console.log(params.get("page"));
+
   const validationSchema = yup.object({
     fName: yup.string().required("First name is required"),
     lName: yup.string().required("Last name is required"),
@@ -33,28 +34,37 @@ function StudentSignUp() {
   const saveStudent = async (values, FormikAction) => {
     FormikAction.setSubmitting(true);
     console.log(values);
+  
+    try {
+      const res = await axios.post(`http://127.0.0.1:8000/api/signup`, {
+        fName: values.fName,
+        lName: values.lName,
+        email: values.email,
+        password: values.password,
+        role: "student",
+      });
+  
+      if (res.data.status === 200 && res.data.message === "success") {
+        navigate("/StudentHome"); // Assuming authentication is successful, navigate to the home page
+      } else {
+        // Handle other cases if needed
+        console.log("Authentication failed:", res.data.message);
+        // Display error message to the user
+        FormikAction.setErrors({ serverError: res.data.message });
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      FormikAction.setErrors({ serverError: "An error occurred during signup." });
+    }
+  
+    // Reset form and set submitting state to false after 2 seconds
     setTimeout(() => {
       FormikAction.resetForm();
       FormikAction.setSubmitting(false);
-      navigate("/");
     }, 2000);
-    // try {
-    //   const res = await axios.post(`http://127.0.0.1:8000/api/signup`);
-
-    //   if (res.data.status === 200) {
-    //     console.log(res.data.message);
-
-    //     // Assuming authentication is successful, navigate to the home page
-    //     navigate("/StudentHome");
-    //   } else {
-    //     // Handle other cases if needed
-    //     console.log("Authentication failed:", res.data.message);
-    //   }
-    // } catch (error) {
-    //   // Handle errors
-    //   console.error("Error during authentication:", error);
-    // }
+    navigate("/student/mainHome");
   };
+
 
   return (
     <div>
