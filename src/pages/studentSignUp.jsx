@@ -33,10 +33,9 @@ function StudentSignUp() {
 
   const saveStudent = async (values, FormikAction) => {
     FormikAction.setSubmitting(true);
-    console.log(values);
   
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/api/signup`, {
+      const res = await axios.post(`/signup`, {
         fName: values.fName,
         lName: values.lName,
         email: values.email,
@@ -44,25 +43,22 @@ function StudentSignUp() {
         role: "student",
       });
   
-      if (res.data.status === 200 && res.data.message === "success") {
-        navigate("/StudentHome"); // Assuming authentication is successful, navigate to the home page
+      if (res.status === 200) {
+        navigate("/Login");
+         // Assuming authentication is successful, navigate to the home page
       } else {
         // Handle other cases if needed
-        console.log("Authentication failed:", res.data.message);
+        console.log("Authentication failed:", res.jsonData.data.message);
         // Display error message to the user
-        FormikAction.setErrors({ serverError: res.data.message });
+        FormikAction.setErrors({ serverError: res.jsonData.data.message });
       }
     } catch (error) {
-      console.error("Error during authentication:", error);
-      FormikAction.setErrors({ serverError: "An error occurred during signup." });
+      console.error("Error during authentication:", error.response);
+      
     }
-  
-    // Reset form and set submitting state to false after 2 seconds
-    setTimeout(() => {
       FormikAction.resetForm();
       FormikAction.setSubmitting(false);
-    }, 2000);
-    navigate("/student/mainHome");
+ 
   };
 
 

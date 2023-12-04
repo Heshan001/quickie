@@ -12,6 +12,7 @@ import InstituteDash from "./pages/institute/dashboard.jsx";
 import InsEvent from "./pages/institute/insEvent.jsx";
 import ManageNews from "./pages/admin/manageNews.jsx";
 import InsManageCourses from "./pages/institute/insManageCourses.jsx";
+import Login from "./pages/login.jsx"
 
 // PUBLIC ROUTES
 import HomePage from "./pages/index.jsx";
@@ -22,6 +23,7 @@ import Selection from "./pages/selection.jsx";
 import StudentSignUp from "./pages/studentSignUp.jsx";
 import InstituteSignUp from "./pages/instituteSignUp.jsx";
 import NotFound from "./pages/errors/NotFound.jsx";
+import Test from './pages/test.jsx'
 
 // STUDENT PRIVATE ROUTES
 import StudentHome from "./pages/mainHome.jsx";
@@ -39,6 +41,11 @@ function App() {
       <Route path="/selection" element={<Selection />} />
       <Route path="/StudentSignUp" element={<StudentSignUp />} />
       <Route path="/InstituteSignUp" element={<InstituteSignUp />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/test" element={<Test />} />
+      
+
+
       {/* STUDENT PRIVATE ROUTES  */}
       <Route
         path="/student/mainHome"

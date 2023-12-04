@@ -32,33 +32,29 @@ function StudentSignUp() {
     FormikAction.setSubmitting(true);
 
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/api/signup`, {
+      const res = await axios.post(`/signup`, {
         instituteName: values.instituteName,
         email: values.email,
         password: values.password,
-        role: "admin",
+        role: "institute",
       });
 
-      if (res.data.status === 200) {
-        navigate('/instituteDash');
+      if (res.status === 200) {
+        navigate('/Login');
       } else {
-        console.log("Authentication failed", res.data.massage);
-        FormikAction.setErrors({ serverError: res.data.message });
+        console.log("Authentication failed", res.jsonData.data.massage);
+        FormikAction.setErrors({ serverError: res.jsonData.data.message });
       }
     } catch (error) {
       console.error("Error during authentication:", error);
       FormikAction.setErrors({ serverError: "An error occurred during signup." });
     }
-
-    setTimeout(() => {
       FormikAction.resetForm();
       FormikAction.setSubmitting(false);
-    }, 2000);
+    
   };
 
 
-
- 
 
   return (
     <div>

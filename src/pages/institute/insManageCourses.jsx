@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import InstituteSideBar from '../../components/instituteSideBar'
 import '../../styles/institute/insManageCourses.css'
 import axios from 'axios'
@@ -6,20 +6,17 @@ import { Formik } from 'formik';
 // import * as yup from 'yup'
 
 function InsManageCourses() {
-
-
+const [image,setImage] = useState(null)
 
   const initialValues = {
     courseName: "",
     courseOverview: "",
     courseContent: "",
     minimumResult: "",
-    alSubjectStream: "maths",
-    zScore: "",
-    addImage: ""
+    subjectStream: "",
+    zCore: "",
   }
 
-<<<<<<< HEAD
   // const validationSchema = yup.object({
   //   courseName: yup.string().required("course name is required"),
   //   courseOverview: yup.string().required("course overview is required"),
@@ -30,36 +27,32 @@ function InsManageCourses() {
   // })
 
   const addCourse = async (values, FormikAction) => {
-    FormikAction.setSubmitting(true)
-=======
-    {
-      name:'Minimum Result',
-      id : 'minimumResult',
-      type : 'text'
-    },
->>>>>>> a39d007d599266e283733f05b00d4023f5b75928
-
-    try {
-      await axios.post(`http://127.0.0.1:8000/api/course/store`, {
-        courseName: values.courseName,
-        courseOverview: values.courseOverview,
-        courseContent: values.courseContent,
-        minimumResult: values.minimumResult,
-        alSubjectStream: values.alSubjectStream,
-        zScore: values.zScore,
-        image:values.image
-      });
-
-      // Use the response data here if necessary
-    } catch (error) {
-      console.error("Error during authentication:", error);
-      FormikAction.setErrors({ serverError: "An error occurred during signup." });
+    FormikAction.setSubmitting(true);
+    if (!image){
+      alert("Please select an image")
+      return;
     }
+    try {
+      // Get the token from wherever you have stored it (localStorage, state, etc.)
+      const formData = new FormData()
+      formData.append("image",image)
+      formData.append("courseName",values.courseName)
+      formData.append("courseOverview",values.courseOverview)
+      formData.append("courseContent",values.courseContent)
+      formData.append("minimumResult",values.minimumResult)
+      formData.append("alSubjectStream",values.subjectStream)
+      formData.append("zCore",values.zCore)
 
-    setTimeout(() => {
-      FormikAction.resetForm();
-      FormikAction.setSubmitting(false);
-    }, 2000);
+      const res = await axios.post(`/course/store`, formData);
+      console.log(res)
+      
+          FormikAction.resetForm();
+          FormikAction.setSubmitting(false);
+    } catch (error) {
+      alert("An Error accured while uploading")
+      console.error("Error during authentication:", error);
+    }
+ 
   };
 
 
@@ -137,21 +130,21 @@ function InsManageCourses() {
                   <input
                     type="text"
                     placeholder='AL subject stream'
-                    id='alSubjectStream'
+                    id='subjectStream'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.alSubjectStream}
+                    value={values.subjectStream}
                   />
                 </div>
 
                 <div className="inputs">
                   <input
                     type="text"
-                    placeholder='Z Score'
-                    id='zScore'
+                    placeholder='Z Core'
+                    id='zCore'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.zScore}
+                    value={values.zCore}
                   />
                 </div>
 
@@ -159,10 +152,8 @@ function InsManageCourses() {
                   <input
                     type="file"
                     placeholder='image'
-                    id='zScore'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.image}
+                    id='image'
+                    onChange={e=>setImage(e.target.files[0])}
                   />
                 </div>
                 <button

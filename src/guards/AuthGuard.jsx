@@ -8,15 +8,6 @@ function AuthGuard({ children }) {
 
 
   if (user) {
-    /*
-
-    if (role === INSTITUTE_ROLE) {
-      return <Navigate to="/instituteDash" />;
-    }
-    else {
-    }
-    */
-
     return children;
   } else {
     return <Navigate to="/login" />;

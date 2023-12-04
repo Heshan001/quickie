@@ -1,75 +1,84 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/login.css";
 import NavBar from "../components/navBar.jsx";
 import Footer from "../components/footer.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik } from "formik";
 import axios from "axios";
+import * as yup from "yup";
 
-const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+function
 
-function SignIn({ userType }) {
+  Login() {
   const navigate = useNavigate();
 
-  const signInFields = [
-    {
-      type: "email",
-      name: "email",
-      label: "E Mail",
-    },
-    {
-      type: "password",
-      name: "password",
-      label: "Password",
-    },
-  ];
-
-  const [credentials, setCredentials] = useState({
+  const initialValues = {
     email: "",
     password: "",
+  };
+
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    password: yup.string().required("Password is required"),
   });
 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
-      [name]: value,
-    }));
-  };
+  const handleLogin = async (values, FormikAction) => {
+    FormikAction.setSubmitting(true);
+    try {
+      const res = await axios.post("/login", {
+        email: values.email,
+        password: values.password,
+      });
 
-  const saveLogin = (e) => {
-    e.preventDefault();
-    // Add logic to send credentials to the server for authentication
-    axios.post("/api/login", credentials).then((response) => {
-      handleCallBack(response, response.status);
-    });
-  };
-
-  const handleCallBack = (data, status) => {
-    if (status === 200) {
-      localStorage.setItem("userToken", data.data.token);
-      //  TODO: FETCH AUTHENTICATED USER
-      //  TODO: SAVE AUTHENTICATED USER IN LOCAL STORAGE
-
-      navigate("/dashboard", { replace: true });
-      
-      // if (adminEmail === credentials.email) {
-      // } else {
-      //   // Add logic to differentiate between institute and student users
-      //   if (userType === "institute") {
-      //     navigate("/instituteDash", { replace: true });
-      //   } else {
-      //     navigate("/mainHome", { replace: true });
-      //   }
+      if (res.status === 200) {
+        // Set user token in local storage
+        localStorage.setItem("token", res.data.token);
+        await handleUser()
+      } else {
+        console.log("Authentication failed", res.data.message);
+        FormikAction.setErrors({ serverError: res.data.message });
       }
-    } else {
-      openNotification(status);
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      FormikAction.setErrors({ serverError: "An error occurred during login." });
     }
+    // FormikAction.resetForm();
+    // FormikAction.setSubmitting(false);
+    
+    
   };
 
-  const openNotification = (status) => {
-    // Add logic to handle error notifications
-    console.log(`Error: ${status}`);
-  };
+  const handleUser = async ()=>{
+    try{
+      const response = await axios.get("/user");
+      const user = response.data;
+      const userRole = user.role;
+      localStorage.setItem("user",JSON.stringify(response.data));
+
+      // Check user role and navigate accordingly
+    switch (userRole) {
+      case 'student':
+        navigate("/mainHome");
+        break;
+      case 'admin':
+        navigate("dashboard");
+        break;
+      case 'institute':
+        navigate("/instituteDash");
+        break;
+      default:
+        // Navigate to a default route or handle the case when the role is not recognized
+        console.error("Unknown user role:", userRole);
+    }
+
+
+    }catch(error){
+      console.error("Error during authentication:", error);
+    }
+  }
 
   return (
     <div>
@@ -80,30 +89,70 @@ function SignIn({ userType }) {
 
       <div className="hero"></div>
 
-      <div className="signInForm">
-        <h1>Sign In</h1>
+      <div className="loginForm">
+        <h1>Login</h1>
 
-        <form onSubmit={saveLogin}>
-          {signInFields.map(({ label, type, name }, index) => (
-            <div className="inputs" key={index}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleLogin}
+          validationSchema={validationSchema}
+        >
+          {({
+            values,
+            touched,
+            errors,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <div className="inputs">
               <input
-                onChange={handleInput}
-                type={type}
-                value={credentials[name]}
-                name={name}
-                placeholder={label}
+                placeholder="E mail"
+                name="email"
+                id="email"
+                type="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
               />
-            </div>
-          ))}
+              {errors.email && touched.email ? (
+                <span>{errors.email}</span>
+              ) : null}
 
-          <button className="buttons" type="submit">
-            Sign In
-          </button>
-        </form>
+              <input
+                placeholder="Password"
+                name="password"
+                id="password"
+                type="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+              {errors.password && touched.password ? (
+                <span>{errors.password}</span>
+              ) : null}
+
+              <button
+              id="submitButton"
+                className="submitButton"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                type="submit"
+              >
+                Login
+              </button>
+              <p>
+                Don't have an account? <Link to="/StudentSignUp">Sign Up</Link>
+              </p>
+            </div>
+          )}
+        </Formik>
       </div>
+
       <Footer />
     </div>
   );
 }
 
-export default SignIn;
+export default Login;

@@ -8,7 +8,7 @@ function StudentRoleGuard({ children }) {
   const role = user.role;
 
   if (role !== STUDENT_ROLE) {
-    return <Navigate to="/StudentHome" />;
+    return <Navigate to="Login" />;
   }
   return children;
 }
