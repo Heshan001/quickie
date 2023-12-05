@@ -8,7 +8,6 @@ function ManageUsers() {
     const [state, setState] = useState({
         title: '',
         image : '',
-        name : '',
         description: ''
         
     })
@@ -27,8 +26,7 @@ function ManageUsers() {
         if (res.data.status === 200) {
             console.log(res.data.message);
             setState({
-                title: '',
-                name : '',
+                title: '',             
                 image : '',
                 description: ''
             })
@@ -48,17 +46,18 @@ function ManageUsers() {
                 <form action="" onChange={addNews}> 
                 <div className="newsInput">
                     
-                    <input onClick={handleInput} placeholder='News title' value={state.name} type="text" />
+                    <input onClick={handleInput} placeholder='News title' id='title' value={state.name} type="text" />
+                </div>
+
+
+                <div className="newsInput">
+                    
+                   <textarea onClick={handleInput} value={state.name} id='description'  placeholder='add description' name="" ></textarea>
                 </div>
 
                 <div className="newsInput">
                     
-                   <textarea onClick={handleInput} value={state.name} placeholder='add description' name="" id="" cols="56" rows="10"></textarea>
-                </div>
-
-                <div className="newsInput">
-                    
-                    <input onClick={handleInput} value={state.name} type="text" />
+                    <input onClick={handleInput}  value={state.name} type="file" id='image' />
                 </div>
                 <button type='submit'>Add</button>
                 </form>

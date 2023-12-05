@@ -48,9 +48,9 @@ function StudentSignUp() {
          // Assuming authentication is successful, navigate to the home page
       } else {
         // Handle other cases if needed
-        console.log("Authentication failed:", res.jsonData.data.message);
+        console.log("Authentication failed:", res.data.message);
         // Display error message to the user
-        FormikAction.setErrors({ serverError: res.jsonData.data.message });
+        FormikAction.setErrors({ serverError: res.data.message });
       }
     } catch (error) {
       console.error("Error during authentication:", error.response);

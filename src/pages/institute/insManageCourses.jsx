@@ -35,13 +35,13 @@ const [image,setImage] = useState(null)
     try {
       // Get the token from wherever you have stored it (localStorage, state, etc.)
       const formData = new FormData()
-      formData.append("image",image)
       formData.append("courseName",values.courseName)
       formData.append("courseOverview",values.courseOverview)
       formData.append("courseContent",values.courseContent)
       formData.append("minimumResult",values.minimumResult)
       formData.append("alSubjectStream",values.subjectStream)
       formData.append("zCore",values.zCore)
+      formData.append("image",image)
 
       const res = await axios.post(`/course/store`, formData);
       console.log(res)

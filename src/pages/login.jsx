@@ -35,7 +35,7 @@ function
 
       if (res.status === 200) {
         // Set user token in local storage
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.data.token);
         await handleUser()
       } else {
         console.log("Authentication failed", res.data.message);
@@ -61,10 +61,10 @@ function
       // Check user role and navigate accordingly
     switch (userRole) {
       case 'student':
-        navigate("/mainHome");
+        navigate("/student/mainHome");
         break;
       case 'admin':
-        navigate("dashboard");
+        navigate("/dashboard");
         break;
       case 'institute':
         navigate("/instituteDash");

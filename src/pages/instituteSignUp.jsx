@@ -42,8 +42,8 @@ function StudentSignUp() {
       if (res.status === 200) {
         navigate('/Login');
       } else {
-        console.log("Authentication failed", res.jsonData.data.massage);
-        FormikAction.setErrors({ serverError: res.jsonData.data.message });
+        console.log("Authentication failed", res.data.massage);
+        FormikAction.setErrors({ serverError: res.data.message });
       }
     } catch (error) {
       console.error("Error during authentication:", error);
