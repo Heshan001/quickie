@@ -29,6 +29,8 @@ import Test from './pages/test.jsx'
 import StudentHome from "./pages/mainHome.jsx";
 import Course from "./pages/course.jsx";
 import AdminRoleGuard from "./guards/AdminRoleGuard.jsx";
+import StudentRoleGuard from "./guards/StudentRoleGuard.jsx";
+import InstituteRoleGuard from "./guards/InstituteRoleGuard.jsx";
 
 function App() {
   return (
@@ -37,7 +39,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/event" element={<EventPage />} />
-      <Route path="/contact" element={<InsManageCourses />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/selection" element={<Selection />} />
       <Route path="/StudentSignUp" element={<StudentSignUp />} />
       <Route path="/InstituteSignUp" element={<InstituteSignUp />} />
@@ -51,9 +53,9 @@ function App() {
         path="/student/mainHome"
         element={
           <AuthGuard>
-            <studentRoleGuard>
+            <StudentRoleGuard>
               <StudentHome />
-            </studentRoleGuard>
+            </StudentRoleGuard>
           </AuthGuard>
         }
       />
@@ -61,9 +63,9 @@ function App() {
         path="/student/course"
         element={
           <AuthGuard>
-            <studentRoleGuard>
+            <StudentRoleGuard>
               <Course />
-            </studentRoleGuard>
+            </StudentRoleGuard>
           </AuthGuard>
         }
       />
@@ -83,7 +85,10 @@ function App() {
         path="/admin/manageUsers"
         element={
           <AuthGuard>
-            <ManageUsers />
+            <AdminRoleGuard>
+              <ManageUsers />
+            </AdminRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -91,7 +96,10 @@ function App() {
         path="/admin/manageEvents"
         element={
           <AuthGuard>
-            <ManageEvents />
+            <AdminRoleGuard>
+              <ManageEvents />
+            </AdminRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -99,7 +107,10 @@ function App() {
         path="/admin/manageCourses"
         element={
           <AuthGuard>
-            <ManageCourses />
+            <AdminRoleGuard>
+              <ManageCourses />
+            </AdminRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -107,7 +118,10 @@ function App() {
         path="/admin/manageComments"
         element={
           <AuthGuard>
-            <ManageComments />
+            <AdminRoleGuard>
+              <ManageComments />
+            </AdminRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -115,6 +129,7 @@ function App() {
         path="/admin/manageNews"
         element={
           <AuthGuard>
+            
             <ManageNews />
           </AuthGuard>
         }
@@ -126,7 +141,10 @@ function App() {
         path="/instituteDash"
         element={
           <AuthGuard>
-            <InstituteDash />
+            <InstituteRoleGuard>
+              <InstituteDash />
+            </InstituteRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -134,7 +152,10 @@ function App() {
         path="/insEvent"
         element={
           <AuthGuard>
-            <InsEvent />
+            <InstituteRoleGuard>
+              <InsEvent />
+            </InstituteRoleGuard>
+            
           </AuthGuard>
         }
       />
@@ -142,7 +163,9 @@ function App() {
         path="/insManageCourses"
         element={
           <AuthGuard>
-            <InsManageCourses />
+            <InstituteRoleGuard>
+              <InsManageCourses />
+            </InstituteRoleGuard>          
           </AuthGuard>
         }
       />

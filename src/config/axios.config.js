@@ -14,17 +14,17 @@ function interceptorsHandle(){
         return config;
     })
 
-    // axios.interceptors.response.use(
-    //     (response)=>{return response},
-    //     error=>{
-    //         if (error.request.status === 401) {
-    //             localStorage.removeItem("token")
-    //             localStorage.removeItem("user")
-    //             return axios(error.config);
-    //         }
-    //         return Promise.reject(error);
-    //     }
-    // )
+    axios.interceptors.response.use(
+        (response)=>{return response},
+        error=>{
+            if (error.request.status === 401) {
+                localStorage.removeItem("token")
+                localStorage.removeItem("user")
+                return axios(error.config);
+            }
+            return Promise.reject(error);
+        }
+    )
 }
 export {
     addHeaders,

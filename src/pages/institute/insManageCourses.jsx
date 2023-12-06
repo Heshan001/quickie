@@ -13,9 +13,16 @@ const [image,setImage] = useState(null)
     courseOverview: "",
     courseContent: "",
     minimumResult: "",
-    subjectStream: "",
+    subjectStream: "technology",
     zCore: "",
   }
+
+  const ADD_COURSE_URL = "http://localhost:8000/api/course/store";
+  
+
+  
+
+
 
   // const validationSchema = yup.object({
   //   courseName: yup.string().required("course name is required"),
@@ -28,31 +35,37 @@ const [image,setImage] = useState(null)
 
   const addCourse = async (values, FormikAction) => {
     FormikAction.setSubmitting(true);
-    if (!image){
-      alert("Please select an image")
+    if (!image) {
+      alert("Please select an image");
       return;
     }
     try {
-      // Get the token from wherever you have stored it (localStorage, state, etc.)
-      const formData = new FormData()
-      formData.append("courseName",values.courseName)
-      formData.append("courseOverview",values.courseOverview)
-      formData.append("courseContent",values.courseContent)
-      formData.append("minimumResult",values.minimumResult)
-      formData.append("alSubjectStream",values.subjectStream)
-      formData.append("zCore",values.zCore)
-      formData.append("image",image)
-
-      const res = await axios.post(`/course/store`, formData);
-      console.log(res)
-      
-          FormikAction.resetForm();
-          FormikAction.setSubmitting(false);
+      // Create a FormData object to send the data
+      const formData = new FormData();
+      formData.append("courseName", values.courseName);
+      formData.append("courseOverview", values.courseOverview);
+      formData.append("courseContent", values.courseContent);
+      formData.append("minimumResult", values.minimumResult);
+      formData.append("alSubjectStream", values.subjectStream);
+      formData.append("zCore", values.zCore);
+      formData.append("image", image);
+  
+      // Make an API call to the ADD_COURSE_URL endpoint
+      const response = await axios.post(ADD_COURSE_URL, formData);
+  
+      // Handle successful response
+      if (response.status === 200) {
+        console.log("Course added successfully!", response.data);
+        FormikAction.resetForm();
+        FormikAction.setSubmitting(false);
+      } else {
+        console.error("Error adding course:", response.data);
+        alert("An error occurred while adding the course.");
+      }
     } catch (error) {
-      alert("An Error accured while uploading")
-      console.error("Error during authentication:", error);
+      console.error("Error during adding course:", error);
+      alert("An unexpected error occurred.");
     }
- 
   };
 
 

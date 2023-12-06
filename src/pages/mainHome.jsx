@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React,{useState, useEffect} from "react";
 import NavBar from "../components/navBar";
 import "../styles/mainHome.css";
 import Footer from "../components/footer";
@@ -12,17 +12,58 @@ function MainHome() {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('/courses/${limit}/${page}/${query}'); 
-      const courses = response.data;
-      setMainContent(courses);
+      const response = await axios.get("/student/get_allCourseList/limit=2&page=1&query=courseList");
+      console.log(response, "list");
+
+      // Check if the status is true before processing the data
+      if (response.status === 200) {
+        const courses = response.data.data.courses.map((course) => {
+          return {
+            title: course.courseName,
+            image: course.image,
+            content: course.courseOverview,
+          };
+        });
+        setMainContent(courses);
+      } else {
+        console.error("API request failed:", response.data.data.message);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching courses:", error);
     }
   };
 
   useEffect(() => {
-    fetchCourses(10, 1, '');
+    fetchCourses();
   }, []);
+  // const [mainContent, setMainContent] = useState([]);
+
+  // const fetchCourses = async () => {
+  //   try {
+  //     const response = await axios.get("/course/get_list");
+  //     console.log(response, "list");
+
+  //     // Check if the status is true before processing the data
+  //     if (response.status ===200) {
+  //       const courses = response.data.data.courses.map((course) => {
+  //         return {
+  //           title: course.courseName,
+  //           Image: course.Image,
+  //           content: course.courseOverview,
+  //         };
+  //       });
+  //       setMainContent(courses);
+  //     } else {
+  //       console.error("API request failed:", response.data.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching courses:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchCourses();
+  // }, []);
 
 
 

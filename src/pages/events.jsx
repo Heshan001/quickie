@@ -1,84 +1,103 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import '../styles/events.css'
 import NavBar from '../components/navBar'
 import Footer from '../components/footer'
+import axios from 'axios'
+
 
 function Events() {
 
-const cards = [
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+    const [cards, setCards] = useState([]);
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+    const fetchCourses = async () => {
+        try {
+          const response = await axios.get("/course/get_list"); 
+          // Assuming the response structure is { data: [...] }
+          const courses = response.data.data;
+          setCards(courses);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      useEffect(() => {
+        fetchCourses();
+      }, []);
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+// const cards = [
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    },
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-    {
-        title : 'News 2',
-        image : './images/card.jpg',
-        content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
-    }
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
 
-]
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     },
+
+//     {
+//         title : 'News 2',
+//         image : './images/card.jpg',
+//         content : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Mag'
+//     }
+
+// ]
  
   return (
     <div>

@@ -7,6 +7,8 @@ import '../../styles/institute/insEvent.css'
 
 function InsEvent() {
 
+   
+
     const addEvent = [
         {
             name : 'Event name',
