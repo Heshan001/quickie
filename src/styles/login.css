@@ -32,18 +32,23 @@
     
 }
 
-.signInForm h1{
+.loginForm h1{
     padding-top: 2%;
+    text-align: center;
 }
 
-.signInForm form{
-    margin-top: 3%;
-    width: 100%;
-    height: 80vh;
+
+.inputs{
+    padding-top: 2%;
+    padding-left: 40%;
+    display: flex;
+    flex-direction: column;
+    
+
 
 }
 
-.signInForm form input{
+  .inputs input{
     width: 35%;
     padding: 8px;
     margin-top: 2%;
@@ -53,16 +58,12 @@
 
 }
 
-.signInForm form button{
-    margin-top: 3%;
-    padding: 10px 15px;
-    font-size: 15px;
-    background: none;
-    border: 1px solid #585858;
-    border-radius: 5px;
-    cursor: pointer;
+.submitButton{
+    width: 10%;
+    margin-left: 12%;
 }
 
-.signInForm p{
-    margin-top: 2%;
+.loginForm p{
+    padding-top: 3%;
+    padding-left: 4%;
 }

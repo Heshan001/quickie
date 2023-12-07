@@ -36,122 +36,7 @@ function MainHome() {
   useEffect(() => {
     fetchCourses();
   }, []);
-  // const [mainContent, setMainContent] = useState([]);
-
-  // const fetchCourses = async () => {
-  //   try {
-  //     const response = await axios.get("/course/get_list");
-  //     console.log(response, "list");
-
-  //     // Check if the status is true before processing the data
-  //     if (response.status ===200) {
-  //       const courses = response.data.data.courses.map((course) => {
-  //         return {
-  //           title: course.courseName,
-  //           Image: course.Image,
-  //           content: course.courseOverview,
-  //         };
-  //       });
-  //       setMainContent(courses);
-  //     } else {
-  //       console.error("API request failed:", response.data.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching courses:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCourses();
-  // }, []);
-
-
-
-  // const mainContent = [
-  //   {
-  //     title: "title 1",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 2",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 3",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 1",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 2",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 3",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 1",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 3",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 4",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 5",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 6",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s",
-  //   },
-
-  //   {
-  //     title: "title 7",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "  and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //   },
-  // ];
+ 
   return (
     <div>
       <div className="nav">  
@@ -168,9 +53,9 @@ function MainHome() {
           <input type="text" placeholder="search" className="searchTerm" />
         </div>
         <div className="filter">
-          <input type="text" placeholder="subject" />
-          <input type="text" placeholder="result" />
-          <input type="text " placeholder="Z score" />
+          <input className="inputFields" type="text" placeholder="subject" />
+          <input className="inputFields" type="text" placeholder="result" />
+          <input className="inputFields" type="text " placeholder="Z score" />
           <button className="filterButton" type="submit">
             Filter
           </button>

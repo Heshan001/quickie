@@ -11,16 +11,43 @@
     background-size: cover;
     width: 100%;
     height: 90vh;
-    background-size: cover;
+    background-repeat: no-repeat;
     margin-top: 5%;
 }
 
 
 
-.nav hr{
-    width: 40%;
-    margin-top: 1%;
-    margin-left: 28%;
+ hr{
+    margin-top: 0.5%;
+    margin-left: 45%;
+    width: 10%;
     background-color: #181818;
    
 }
+
+.conText{
+    padding-top: 2%;
+    color: aqua;
+}
+
+.conText h1{
+    text-align: center;
+}
+
+.conText p{
+    text-align: center;
+    width: 80%;
+    padding-left: 18%;
+    padding-top: 3%;
+    font-size: 18px;
+}
+
+ .btn{
+    padding-left: 45%;
+    gap: -50px;
+}
+
+.btn .buttons{
+    background-color: aqua;
+}
+

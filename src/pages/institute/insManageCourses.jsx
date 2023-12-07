@@ -1,72 +1,94 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import InstituteSideBar from '../../components/instituteSideBar'
 import '../../styles/institute/insManageCourses.css'
 import axios from 'axios'
 import { Formik } from 'formik';
 // import * as yup from 'yup'
 
+
+const ADD_COURSE_URL = 'http://localhost:8000/api/course/store';
+const GET_COURSES_URL = 'http://localhost:8000/api/course/get_list?id=1&page=1';
+
+
 function InsManageCourses() {
-const [image,setImage] = useState(null)
+  const [image, setImage] = useState(null);
+  const [courses, setCourses] = useState([]);
 
   const initialValues = {
-    courseName: "",
-    courseOverview: "",
-    courseContent: "",
-    minimumResult: "",
-    subjectStream: "technology",
-    zCore: "",
-  }
-
-  const ADD_COURSE_URL = "http://localhost:8000/api/course/store";
-  
-
-  
-
-
-
-  // const validationSchema = yup.object({
-  //   courseName: yup.string().required("course name is required"),
-  //   courseOverview: yup.string().required("course overview is required"),
-  //   courseContent: yup.string().required("course content is required"),
-  //   minimumResult: yup.string().required("minimum result is required"),
-  //   alSubjectStream: yup.string().required("required"),
-  //   zScore: yup.string().required("required"),
-  // })
+    courseName: '',
+    courseOverview: '',
+    courseContent: '',
+    minimumResult: '',
+    subjectStream: 'technology',
+    zCore: '',
+  };
 
   const addCourse = async (values, FormikAction) => {
     FormikAction.setSubmitting(true);
-    if (!image) {
-      alert("Please select an image");
-      return;
+
+    const formData = new FormData();
+    formData.append('courseName', values.courseName);
+    formData.append('courseOverview', values.courseOverview);
+    formData.append('courseContent', values.courseContent);
+    formData.append('minimumResult', values.minimumResult);
+    formData.append('alSubjectStream', values.subjectStream);
+    formData.append('zCore', values.zCore);
+    if (image) {
+      formData.append('image', image);
     }
+
     try {
-      // Create a FormData object to send the data
-      const formData = new FormData();
-      formData.append("courseName", values.courseName);
-      formData.append("courseOverview", values.courseOverview);
-      formData.append("courseContent", values.courseContent);
-      formData.append("minimumResult", values.minimumResult);
-      formData.append("alSubjectStream", values.subjectStream);
-      formData.append("zCore", values.zCore);
-      formData.append("image", image);
-  
-      // Make an API call to the ADD_COURSE_URL endpoint
       const response = await axios.post(ADD_COURSE_URL, formData);
-  
-      // Handle successful response
+
       if (response.status === 200) {
-        console.log("Course added successfully!", response.data);
+        console.log('Course added successfully!', response.data);
         FormikAction.resetForm();
-        FormikAction.setSubmitting(false);
+        setCourses(courses => [...courses, response.data.data.course]);
       } else {
-        console.error("Error adding course:", response.data);
-        alert("An error occurred while adding the course.");
+        console.error('Error adding course:', response.data);
+        alert('An error occurred while adding the course.');
       }
     } catch (error) {
-      console.error("Error during adding course:", error);
-      alert("An unexpected error occurred.");
+      console.error('Error during adding course:', error);
+      alert('An unexpected error occurred.');
+    } finally {
+      FormikAction.setSubmitting(false);
     }
   };
+
+  const deleteCourse = async (courseId) => {
+    try {
+      const response = await axios.delete(`<span class="math-inline">\{DELETE\_COURSE\_URL\}/</span>{courseId}`);
+
+      if (response.status === 200) {
+        setCourses(courses => courses.filter(course => course.id !== courseId));
+        console.log('Course deleted successfully!');
+      } else {
+        console.error('Error deleting course:', response.data);
+        alert('An error occurred while deleting the course.');
+      }
+    } catch (error) {
+      console.error('Error during deleting course:', error);
+      alert('An unexpected error occurred.');
+    }
+  };
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(GET_COURSES_URL);
+        if (response.status === 200) {
+          setCourses(response.data.data.courses);
+        } else {
+          console.error('Error fetching courses:', response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
 
   return (

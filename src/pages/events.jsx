@@ -6,24 +6,20 @@ import axios from 'axios'
 
 
 function Events() {
+  const [cards, setCards] = useState([]);
 
-    const [cards, setCards] = useState([]);
-
-    const fetchCourses = async () => {
-        try {
-          const response = await axios.get("/course/get_list"); 
-          // Assuming the response structure is { data: [...] }
-          const courses = response.data.data;
-          setCards(courses);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-    
-      useEffect(() => {
-        fetchCourses();
-      }, []);
-
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get('/api/events');
+        setCards(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchEvents();
+  }, []);
+ 
 // const cards = [
 //     {
 //         title : 'News 2',

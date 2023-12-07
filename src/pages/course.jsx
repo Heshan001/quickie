@@ -7,35 +7,35 @@ import axios from 'axios'
 
 
 function Course() {
-  const [courses, setCourses] = useState([]);
 
+  const [course, setMainCourse] = useState([]);
 
+  const fetchCourses = async () => {
+    try {
+      const response = await axios.get("/student/get_allCourseList/limit=1&page=1&query=courseList");
+      console.log(response, "list");
 
- 
+      // Check if the status is true before processing the data
+      if (response.status === 200) {
+        const courses = response.data.data.courses.map((course) => {
+          return {
+            courseName: course.courseName,
+            courseOverView: course.courseOverView,
+            courseContent: course.courseContent,
+            // image: course.image,
+          };
+        });
+        setMainCourse(courses);
+      } else {
+        console.error("API request failed:", response.data.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+  };
 
   useEffect(() => {
-
-    // Example GET request
-const fetchData = async () => {
-  try {
-    const response = await axios.get('http://localhost:8000/api/course/get_list?page=1&limit=2');
-    console.log(response.data); // Process the response data
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
-    // const fetchCourses = async () => {
-    //   try {
-    //     const response = await axios.get('/course/get_list');
-    //     const data = response.data.data;
-    //     setCourses(data.data.courses);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
-    fetchData();
+    fetchCourses();
   }, []);
 
   const comments = [
@@ -82,7 +82,7 @@ const fetchData = async () => {
       </div>
 
       {
-        courses.map((courses) => (
+        course.map((courses) => (
           <div className="hero">
              <div className="heroContent">
             <h1>{courses.courseName}</h1>
