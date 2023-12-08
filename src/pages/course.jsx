@@ -3,16 +3,21 @@ import '../styles/course.css'
 import NavBar from '../components/navBar'
 import Footer from '../components/footer'
 import axios from 'axios'
-
+import getUrl from '../utils/url'
+import { useLocation } from 'react-router-dom'
 
 
 function Course() {
 
   const [course, setMainCourse] = useState([]);
+  const location = useLocation();
+  const id = new URLSearchParams(location.search).get('id');
+
 
   const fetchCourses = async () => {
+   
     try {
-      const response = await axios.get("/student/get_allCourseList/limit=1&page=1&query=courseList");
+      const response = await axios.get(`/course/get_one?course_id=${id}`);
       console.log(response, "list");
 
       // Check if the status is true before processing the data
@@ -98,7 +103,7 @@ function Course() {
         </div>
 
         <div className="courseImage">
-          <img src={courses.Image} alt="" />
+          <img src={getUrl(courses.Image)} alt="" />
         </div>
 
           </div>

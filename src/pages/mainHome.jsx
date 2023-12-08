@@ -5,12 +5,14 @@ import Footer from "../components/footer";
 import Logout from "../components/logout"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import getUrl from "../utils/url";
 
 function MainHome() {
   const navigate = useNavigate();
   const [mainContent, setMainContent] = useState([]);
 
   const fetchCourses = async () => {
+    
     try {
       const response = await axios.get("/student/get_allCourseList/limit=2&page=1&query=courseList");
       console.log(response, "list");
@@ -22,6 +24,7 @@ function MainHome() {
             title: course.courseName,
             image: course.image,
             content: course.courseOverview,
+            id:course.id
           };
         });
         setMainContent(courses);
@@ -66,10 +69,11 @@ function MainHome() {
         {mainContent.map((item, index) => {
           return (
             <div className="mainCard" key={index}>
+
               <h3>{item.title}</h3>
-              <img className="images" src={item.image} alt="" />
+              <img className="images" src={getUrl(item.image)} alt="" />
               <p>{item.content}</p>
-              <button onClick={() => navigate("/student/course")}>View more</button>
+              <button onClick={() => navigate("/student/course?id=" +item.id)}>View more</button>
             </div>
           );
         })}

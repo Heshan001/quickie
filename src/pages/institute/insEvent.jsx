@@ -2,63 +2,59 @@ import React, {useState} from 'react'
 import InstituteSideBar from '../../components/instituteSideBar'
 import axios from 'axios'
 import '../../styles/institute/insEvent.css'
+import { Formik } from 'formik';
 
 
 
 function InsEvent() {
 
-   
 
-    const addEvent = [
-        {
-            name : 'Event name',
-            id : 'eventName',
-            type : 'text'
+    const [image, setImage] = useState(null);
+    const [event, setEvent] = useState([]);
 
-        },        
-
-        {
-            name : 'Event Description',
-            id : 'eventDescription',
-            type : 'text'
-        },
-
-        {
-            name : 'Add Image',
-            id : 'Image',
-            type : 'file'
-        }
-
-
-    ]
-
-
-    const [state, setState] = useState({
+    const initialValues = {
         name:'',
-        id : '',
-        type : ''
-  })
+        eventDescription:'',
+    };
+
+    const addEvent = async (values, FormikAction) => {
+
+
+        console.log(values)
+    
+    FormikAction.setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('description', values.description);
+    if (image)
+     { console.log(image)
+      formData.append('image', image);
+    }
+
+    try {
+        const response = await axios.post("/event/store",{
+        //   headers:{
+        //     'Content-Type':'multipart/form-data'
+        //   }
+        });
   
-  const handleInput = (e) => {
-      setState({
-          ...state,
-          [e.target.name]: e.target.value
-      });
-  }
-  
-  const addInsEvent = async (e) => {
-      e.preventDefault();
-  
-      const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
-      if (res.data.status === 200) {
-          console.log(res.data.message);
-          setState({
-            name:'',
-            id : '',
-            type : ''
-          })
+        if (response.status === 200) {
+          console.log('event added successfully!', response.data);
+          FormikAction.resetForm();
+          setEvent(event => [...event, response.data.data.course]);
+        } else {
+          console.error('Error adding course:', response.data);
+          alert('An error occurred while adding the course.');
+        }
+      } catch (error) {
+        console.error('Error during adding course:', error);
+        alert('An unexpected error occurred.');
+      } finally {
+        FormikAction.setSubmitting(false);
       }
-  }
+    }
+
   return (
     <div>
         <div className="institute">
@@ -67,23 +63,69 @@ function InsEvent() {
       </div>
 
       <div className="eventContent">
-      <h2>Add your Event</h2>    
-          {
-            addEvent.map((item,index) => {
-              return(              
-                  <form action="" onSubmit={addInsEvent} >
-                    <div className="insCourseInputs" key={index}>
-                       <input onChange={handleInput} type={item.type} placeholder={item.name} value={state[item.name]} id={item.id} />
-                    </div> 
-                  </form>     
-                               
-              )
-            })
-          }
+      <h2>Add your Event</h2> 
 
-          <button>Add</button>
+      <Formik
+      initialValues={initialValues}
+      onSubmit={addEvent}
+      >
 
-  
+       {({
+         values,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+       }) =>(
+        <>
+         <div className="inputs">
+                  <input
+                    type="text"
+                    placeholder='Event Name'
+                    id='name'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                  />
+         </div>
+
+         <div className="inputs">
+                  <input
+                    type="text"
+                    placeholder='Description'
+                    id='description'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.description}
+                  />
+         </div>
+
+         <div className="inputs">
+                  <input
+                    type="file"
+                    placeholder='Image'
+                    id='Image'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Image}
+                  />
+         </div>
+
+         <button
+                  id="submitButton"
+                  onClick={handleSubmit}
+                  className="submitButton"
+                  disabled={isSubmitting}
+                  type='submit'
+
+                >
+                  Add
+                </button>
+        </>
+       )}
+        
+        </Formik>   
+
         </div>
 
 

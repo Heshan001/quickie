@@ -6,8 +6,8 @@ import { Formik } from 'formik';
 // import * as yup from 'yup'
 
 
-const ADD_COURSE_URL = 'http://localhost:8000/api/course/store';
-const GET_COURSES_URL = 'http://localhost:8000/api/course/get_list?id=1&page=1';
+const ADD_COURSE_URL = '/course/store';
+const GET_COURSES_URL = '/course/get_list?id=1&page=1';
 
 
 function InsManageCourses() {
@@ -19,11 +19,13 @@ function InsManageCourses() {
     courseOverview: '',
     courseContent: '',
     minimumResult: '',
-    subjectStream: 'technology',
+    subjectStream: '',
     zCore: '',
   };
 
   const addCourse = async (values, FormikAction) => {
+    console.log(values)
+    
     FormikAction.setSubmitting(true);
 
     const formData = new FormData();
@@ -31,14 +33,21 @@ function InsManageCourses() {
     formData.append('courseOverview', values.courseOverview);
     formData.append('courseContent', values.courseContent);
     formData.append('minimumResult', values.minimumResult);
-    formData.append('alSubjectStream', values.subjectStream);
+    formData.append('subjectStream', values.subjectStream);
     formData.append('zCore', values.zCore);
-    if (image) {
+    if (image)
+     { console.log(image)
       formData.append('image', image);
     }
 
+    
+
     try {
-      const response = await axios.post(ADD_COURSE_URL, formData);
+      const response = await axios.post(ADD_COURSE_URL, formData,{
+        headers:{
+          'Content-Type':'multipart/form-data'
+        }
+      });
 
       if (response.status === 200) {
         console.log('Course added successfully!', response.data);
