@@ -4,7 +4,7 @@ import axios from 'axios'
 import '../../styles/institute/insEvent.css'
 import { Formik } from 'formik';
 
-
+const STORE_EVENT = '/event/store';
 
 function InsEvent() {
 
@@ -13,7 +13,7 @@ function InsEvent() {
     const [event, setEvent] = useState([]);
 
     const initialValues = {
-        name:'',
+        eventName:'',
         eventDescription:'',
     };
 
@@ -25,18 +25,18 @@ function InsEvent() {
     FormikAction.setSubmitting(true);
 
     const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('description', values.description);
+    formData.append('eventName', values.eventName);
+    formData.append('eventDescription', values.eventDescription);
     if (image)
      { console.log(image)
       formData.append('image', image);
     }
 
     try {
-        const response = await axios.post("/event/store",{
-        //   headers:{
-        //     'Content-Type':'multipart/form-data'
-        //   }
+        const response = await axios.post(STORE_EVENT, formData,{
+          headers:{
+            'Content-Type':'multipart/form-data'
+          }
         });
   
         if (response.status === 200) {
@@ -82,7 +82,7 @@ function InsEvent() {
                   <input
                     type="text"
                     placeholder='Event Name'
-                    id='name'
+                    id='eventName'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.name}
@@ -93,7 +93,7 @@ function InsEvent() {
                   <input
                     type="text"
                     placeholder='Description'
-                    id='description'
+                    id='eventDescription'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.description}
@@ -104,10 +104,9 @@ function InsEvent() {
                   <input
                     type="file"
                     placeholder='Image'
-                    id='Image'
-                    onChange={handleChange}
+                    id='image'
                     onBlur={handleBlur}
-                    value={values.Image}
+                    onChange={e=>setImage(e.target.files[0])}
                   />
          </div>
 

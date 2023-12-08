@@ -1,43 +1,67 @@
-import  React from "react";
+import  React,{ useState, useEffect } from "react";
 import "../styles/news.css";
-import { useState } from "react";
-import { news1 } from "../components/news1";
-import { news2 } from "../components/news2";
+import  NewsCard from "../components/NewsCard";
+import axios from "axios";
+
+// /news/get_list/{limit?}/{page?}/{query?}
+
 
 function News() {
-  const [newsId, setNewsId] = useState(0);
+  const [page, setPage] = useState(1);
+  const [finalPage, setFinalPage] = useState(0);
+  const [news, setNews] = useState([]);
+  const getNews = async () => {
+    try{
+      const response = await axios.get("/news/get_list/", {
+        params: {
+          limit: 3,
+          page,
+        }
+      });
+      
+      setNews(response.data.data.news);
+      setFinalPage(Math.ceil(response.data.data.pagination.total / 3))
+    }catch(error){
+      console.log(error)
+    }
+  }
 
-  const btnArr = [
-    { name: "back", id: 0 },
-    { name: "forward", id: 1 },
-  ];
+const onBackClick =()=>{
+  if (page !== 1) {
+    setPage(page-1)
+  }else{
+    return
+  }
+}
 
-  const getProductArray = () => {
-    if (newsId === 0) return news1;
-    if (newsId === 1) return news2;
-  };
+  const onForwardClick = () => {
+  console.log(setFinalPage)
+ if (page !== finalPage) {
+    setPage(page+1)
+  }else{
+    return
+  }
+}
+  useEffect(() => {
+  getNews()
+},[page])
+
 
   return (
     <div>
       <div className="buttons">
-        {btnArr.map((btn, idx) => (
-          <button
-            className="mainBtn"
-            key={idx}
-            onClick={() => setNewsId(btn.id)}
-          >
-            {btn.name}
-          </button>
-        ))}
-
+        
+        <button  className="mainBtn" onClick={onBackClick}>back</button>
+        <button  className="mainBtn" onClick={onForwardClick}>forward</button>  
         <div className="newsSection">
-          {getProductArray()?.map((item, index) => (
-            <div className="newsItem" key={index}>
-              <h2>{item.title}</h2>
-              <img src={item.image} alt="" />
-              <p>{item.content}</p>
-            </div>
-          ))}
+          {news.length > 0 ? (
+            <>
+              {
+                news.map((item,key)=><NewsCard key={key} image={item.Image} title={item.title} content={item.description} />)
+            }
+            </>
+          ) : null}
+        
         </div>
       </div>
     </div>

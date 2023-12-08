@@ -129,7 +129,6 @@ function App() {
         path="/admin/manageNews"
         element={
           <AuthGuard>
-            
             <ManageNews />
           </AuthGuard>
         }

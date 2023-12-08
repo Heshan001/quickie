@@ -8,6 +8,7 @@ import { Formik } from 'formik';
 
 const ADD_COURSE_URL = '/course/store';
 const GET_COURSES_URL = '/course/get_list?id=1&page=1';
+const DELETE_COURSES_URL ='/course/delete?course_id=1'
 
 
 function InsManageCourses() {
@@ -67,7 +68,8 @@ function InsManageCourses() {
 
   const deleteCourse = async (courseId) => {
     try {
-      const response = await axios.delete(`<span class="math-inline">\{DELETE\_COURSE\_URL\}/</span>{courseId}`);
+      const response = await axios.delete(DELETE_COURSES_URL);
+      console(response,"delete")
 
       if (response.status === 200) {
         setCourses(courses => courses.filter(course => course.id !== courseId));
@@ -82,21 +84,25 @@ function InsManageCourses() {
     }
   };
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await axios.get(GET_COURSES_URL);
-        if (response.status === 200) {
-          setCourses(response.data.data.courses);
-        } else {
-          console.error('Error fetching courses:', response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching courses:', error);
+  const fetchCourses = async () => {
+    try {
+      const response = await axios.get(GET_COURSES_URL);
+      console.log(response, "list")
+      if (response.status === 200) {
+        // Update state with the fetched courses
+        setCourses(response.data.data.courses);
+      } else {
+        console.error('Error fetching courses:', response.data);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
 
+
+  useEffect(() => {
     fetchCourses();
+   
   }, []);
 
 
@@ -221,6 +227,8 @@ function InsManageCourses() {
       <div className="insCourseTable">
         <h1>Manage Courses</h1>
 
+        
+
         <table>
           <thead>
             <tr>
@@ -229,58 +237,19 @@ function InsManageCourses() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
+            {courses.map((item, index) => {
+              return(
+                <tr key={index}>
+                  <td>{item.courseName}</td>
+                  <button 
+                  onClick={() => deleteCourse(item.courseId)}
+                  >delete
+                  </button>
+                </tr>
+              )
+              })}
 
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
-            <tr>
-              <td>Open University</td>
-              <td><button>delete</button></td>
-
-            </tr>
+          
           </tbody>
         </table>
       </div>

@@ -1,140 +1,151 @@
-import React, {useState} from 'react'
-import SideBar from '../../components/sideBar'
-import '../../styles/admin/manageEvents.css'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import SideBar from '../../components/sideBar';
+import '../../styles/admin/manageEvents.css';
+import axios from 'axios';
+import { Formik } from 'formik';
 
 function ManageUsers() {
+  const [image, setImage] = useState(null);
+  const [news, setNews] = useState([]);
 
-    const [state, setState] = useState({
-        title: '',
-        image : '',
-        description: ''
-        
-    })
+  const initialValues = {
+    title: '',
+    description: '',
+  };
 
-    const handleInput = (e) => {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        });
+  const addNews = async (values, FormikAction) => {
+    FormikAction.setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('title', values.title);
+    formData.append('description', values.description);
+    
+    if (image) {
+      formData.append('Image', image);
     }
 
-    const addNews = async (e) => {
-        e.preventDefault();
+    try {
+      const response = await axios.post('/news/store', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-        const res = await axios.post('http://127.0.0.1:8000/api/add-student', state)
-        if (res.data.status === 200) {
-            console.log(res.data.message);
-            setState({
-                title: '',             
-                image : '',
-                description: ''
-            })
-        }
+      if (response.status === 200) {
+        console.log('News added successfully!', response.data);
+        FormikAction.resetForm();
+        setNews(news => [...news, response.data.data]); // Assuming the API response structure has a 'data' field for the added news
+      } else {
+        console.error('Error adding news:', response.data);
+        alert('An error occurred while adding the news.');
+      }
+    } catch (error) {
+      console.error('Error during adding news:', error);
+      alert('An unexpected error occurred.');
+    } finally {
+      FormikAction.setSubmitting(false);
     }
+  };
+
+  useEffect(() => {
+    // You may fetch and set initial data for the news table here
+    // Example: 
+    // const fetchData = async () => {
+    //   const result = await axios.get('/news');
+    //   setNews(result.data);
+    // };
+    // fetchData();
+  }, []);
+
   return (
     <div className='mainC'>
-        <div className="navSide">
-        <SideBar/>
-        </div>
+      <div className="navSide">
+        <SideBar />
+      </div>
 
-        <div className="eventContent">
-             <div className="news">
+      <div className="eventContent">
+        <div className="news">
+          <h1>Add News and Updates</h1>
 
-        <h1>Add News and Updates</h1>
-            <div className="inputSection">
-                <form action="" onChange={addNews}> 
-                <div className="newsInput">
-                    
-                    <input onClick={handleInput} placeholder='News title' id='title' value={state.name} type="text" />
+          <Formik
+            initialValues={initialValues}
+            onSubmit={addNews}
+          >
+            {({
+              values,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
+              <>
+                <div className="inputs">
+                  <input
+                    type="text"
+                    placeholder='News Title'
+                    id='title'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                  />
                 </div>
 
-
-                <div className="newsInput">
-                    
-                   <textarea onClick={handleInput} value={state.name} id='description'  placeholder='add description' name="" ></textarea>
+                <div className="inputs">
+                  <input
+                    type="text"
+                    placeholder='Description'
+                    id='description'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.description}
+                  />
                 </div>
 
-                <div className="newsInput">
-                    
-                    <input onClick={handleInput}  value={state.name} type="file" id='image' />
+                <div className="inputs">
+                  <input
+                    type="file"
+                    placeholder='image'
+                    id='image'
+                    onChange={e => setImage(e.target.files[0])}
+                  />
                 </div>
-                <button type='submit'>Add</button>
-                </form>
-               
-            </div>
+                <button
+                  id="submitButton"
+                  onClick={handleSubmit}
+                  className="submitButton"
+                  disabled={isSubmitting}
+                  type='submit'
+                >
+                  Add
+                </button>
+              </>
+            )}
+          </Formik>
         </div>
 
         <div className="userTable">
-        <h1>Manage News </h1>
+          <h1>Manage News </h1>
 
-            <table>
+          <table>
             <thead>
-        <tr>
-            <th>Event name</th>
-            <th>Delete Event</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>
-            
-        </tr>
-        <tr>
-            <td>Nipun</td>
-            <td><button>delete</button></td>
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>
-            
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>
-            
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>
-            
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>          
-        </tr>
-
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>           
-        </tr>
-
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>         
-        </tr>
-        <tr>
-            <td>Color night</td>
-            <td><button>delete</button></td>          
-        </tr>
-        </tbody>
-            </table>
+              <tr>
+                <th>News Title</th>
+                <th>Delete News</th>
+              </tr>
+            </thead>
+            <tbody>
+              {news.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.title}</td>
+                  <td><button>Delete</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-       
-        </div>
-
-       
-
-        
-	
-       
-	</div>
-  )
+      </div>
+    </div>
+  );
 }
 
-export default ManageUsers
+export default ManageUsers;

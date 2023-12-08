@@ -10,28 +10,28 @@ function SideBar() {
             name : 'Dashboard'
         },
         {
-            link : '/mangeUsers',
+            link : '/admin/manageUsers',
             name : 'Manage Users'
         },
 
         {
-            link : '/mangeNews',
+            link : '/admin/manageNews',
             name : 'Manage News'
         },
 
         {
-            link : '/mangeCourses',
+            link : '/admin/manageCourses',
             name : 'Manage Courses'
         },
 
         {
-            link : '/mangeEvents',
+            link : '/admin/manageEvents',
             name : 'Manage Events'
         },
 
 
         {
-            link : '/mangeComments',
+            link : '/admin/manageComments',
             name : 'Manage Comments'
         }
     ]

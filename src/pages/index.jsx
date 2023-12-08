@@ -1,43 +1,76 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/homePage.css";
 import NavBar from "../components/navBar";
 import News from "./news";
 import Footer from "../components/footer";
+import axios from "axios";
+import getUrl from "../utils/url";
+
 
 function HomePage() {
   const navigate = useNavigate();
+  const [mainContent, setMainContent] = useState([]);
 
-  const cardItems = [
-    {
-      name: "Software Engineering",
-      image: "./images/card.jpg",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-    },
+  const fetchCourses = async () => {
+    
+    try {
+      const response = await axios.get("/student/get_allCourseList/limit=2&page=1&query=courseList");
 
-    {
-      name: "Software Engineering",
-      image: "./images/card.jpg",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-    },
 
-    {
-      name: "Software Engineering",
-      image: "./images/card.jpg",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-    },
+      // Check if the status is true before processing the data
+      if (response.status === 200) {
+        const courses = response.data.data.courses.map((course) => {
+          return {
+            title: course.courseName,
+            image: course.image,
+            content: course.courseOverview,
+            id:course.id
+          };
+        });
+        setMainContent(courses);
+      } else {
+        console.error("API request failed:", response.data.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+  };
 
-    {
-      name: "Software Engineering",
-      image: "./images/card.jpg",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-    },
-  ];
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  // const cardItems = [
+  //   {
+  //     name: "Software Engineering",
+  //     image: "./images/card.jpg",
+  //     content:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
+  //   },
+
+  //   {
+  //     name: "Software Engineering",
+  //     image: "./images/card.jpg",
+  //     content:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
+  //   },
+
+  //   {
+  //     name: "Software Engineering",
+  //     image: "./images/card.jpg",
+  //     content:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
+  //   },
+
+  //   {
+  //     name: "Software Engineering",
+  //     image: "./images/card.jpg",
+  //     content:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
+  //   },
+  // ];
 
   return (
     <div>
@@ -69,12 +102,12 @@ function HomePage() {
       <h1 className="header">Related Courses</h1>
 
       <div className="cardSection">
-        {cardItems.map((item, index) => {
+        {mainContent.map((item, index) => {
           return (
             <div className="card" key={index}>
-              <h3>{item.name}</h3>
-              <img className="images" src={item.image} alt="" />
-              <p>{item.content}</p>
+              <h3>{item.title}</h3>
+              <img className="images" src={getUrl(item.image)} alt="" />
+              <p>{item.courseOverview}</p>
               <button>View more</button>
             </div>
           );

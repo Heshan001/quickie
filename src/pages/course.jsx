@@ -9,10 +9,10 @@ import { useLocation } from 'react-router-dom'
 
 function Course() {
 
-  const [course, setMainCourse] = useState([]);
+  const [course, setCourse] = useState([]);
   const location = useLocation();
   const id = new URLSearchParams(location.search).get('id');
-
+ 
 
   const fetchCourses = async () => {
    
@@ -20,17 +20,10 @@ function Course() {
       const response = await axios.get(`/course/get_one?course_id=${id}`);
       console.log(response, "list");
 
-      // Check if the status is true before processing the data
       if (response.status === 200) {
-        const courses = response.data.data.courses.map((course) => {
-          return {
-            courseName: course.courseName,
-            courseOverView: course.courseOverView,
-            courseContent: course.courseContent,
-            // image: course.image,
-          };
-        });
-        setMainCourse(courses);
+        
+        setCourse(response.data.data);
+        
       } else {
         console.error("API request failed:", response.data.data.message);
       }
@@ -86,7 +79,16 @@ function Course() {
         <hr />
       </div>
 
-      {
+
+      {course && (
+        <div className="hero">
+          <img src={getUrl(course.image)} alt="Course Image" />
+          <p>{course.courseContent}</p>
+        </div>
+      )}
+   
+
+      {/* {
         course.map((courses) => (
           <div className="hero">
              <div className="heroContent">
@@ -95,7 +97,7 @@ function Course() {
 
          <div className="contentCard">
             <h2>Overview</h2>
-            <p>{courses.courseOverView}</p>
+            <p>{courses.courseOverview}</p>
         </div>
         
           <div className="content">
@@ -108,7 +110,7 @@ function Course() {
 
           </div>
         ) )
-      }
+      } */}
 
 
 

@@ -64,7 +64,7 @@ function
         navigate("/student/mainHome");
         break;
       case 'admin':
-        navigate("/dashboard");
+        navigate("/admin/dashBoard");
         break;
       case 'institute':
         navigate("/instituteDash");
