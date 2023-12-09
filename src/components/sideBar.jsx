@@ -33,6 +33,11 @@ function SideBar() {
         {
             link : '/admin/manageComments',
             name : 'Manage Comments'
+        },
+
+        {
+            link : '/login',
+            name : 'log Out'
         }
     ]
   return (

@@ -136,7 +136,7 @@ function
 
               <button
               id="submitButton"
-                className="submitButton"
+                className="loginSubmitButton"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
                 type="submit"

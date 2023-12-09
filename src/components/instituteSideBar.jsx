@@ -20,6 +20,12 @@ function SideBar() {
         {
             link : '/insEvent',
             name : 'Mange Events'
+        },
+
+        
+        {
+            link : '/login',
+            name : 'log Out'
         }
 
     ]

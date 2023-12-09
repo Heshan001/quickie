@@ -62,6 +62,7 @@ function ManageUsers() {
                 <tr key={index}>
                   <td>{item.courseName}</td>
                   <button 
+                  className='courseDelete'
                   onClick={() => deleteCourse(item.id)}
                   >delete
                   </button>

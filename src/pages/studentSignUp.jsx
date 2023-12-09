@@ -138,7 +138,7 @@ function StudentSignUp() {
               <button
                 id="submitButton"
                 onClick={handleSubmit}
-                className="submitButton"
+                className="StudentSubmitButton"
                 disabled={isSubmitting}
                 type="submit"
               >

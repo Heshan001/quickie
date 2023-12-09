@@ -17,8 +17,10 @@
     color: rgb(226, 226, 226);
 }
 
-.heroContent h1{
-    font-size: 50px;
+.hero h1{
+    font-size: 70px;
+    padding: 100px;
+    color: rgb(202, 211, 211);
 
 }
 
@@ -33,9 +35,7 @@
     width: 50%;
 }
 
-.contentCard p{
-    margin-top: 2%;
-}
+
 
 .comment{
     padding: 4%;
@@ -43,6 +43,7 @@
 
 .comment .addComment{
     background-color: rgb(242, 241, 241);
+    margin-top: 5%;
     width: 49%;
     height: 40vh;
     border-radius: 10px;

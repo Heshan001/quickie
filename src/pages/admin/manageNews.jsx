@@ -19,7 +19,7 @@ function ManageUsers() {
     const formData = new FormData();
     formData.append('title', values.title);
     formData.append('description', values.description);
-    
+
     if (image) {
       formData.append('Image', image);
     }
@@ -47,14 +47,41 @@ function ManageUsers() {
     }
   };
 
+  const deleteNews = async (newsId) => {
+    try {
+      const response = await axios.delete(`/news/delete/${newsId}`);
+      console.log(response, "delete");
+
+      if (response.status === 200) {
+        setNews(news => news.filter(newsItem => newsItem.id !== newsId));
+        console.log('News deleted successfully!');
+      } else {
+        console.error('Error deleting news:', response.data);
+        alert('An error occurred while deleting the news.');
+      }
+    } catch (error) {
+      console.error('Error during deleting news:', error);
+      alert('An unexpected error occurred.');
+    }
+  };
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get('/news/get_list?id=1&page=1');
+      console.log(response, "list");
+      if (response.status === 200) {
+        // Update state with the fetched news
+        setNews(response.data.data.courses || []); // Ensure to handle undefined case
+      } else {
+        console.error('Error fetching news:', response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching news:', error);
+    }
+  };
+
   useEffect(() => {
-    // You may fetch and set initial data for the news table here
-    // Example: 
-    // const fetchData = async () => {
-    //   const result = await axios.get('/news');
-    //   setNews(result.data);
-    // };
-    // fetchData();
+    fetchNews();
   }, []);
 
   return (
@@ -104,7 +131,7 @@ function ManageUsers() {
                 <div className="inputs">
                   <input
                     type="file"
-                    placeholder='image'
+                    placeholder='Image'
                     id='image'
                     onChange={e => setImage(e.target.files[0])}
                   />
@@ -124,7 +151,7 @@ function ManageUsers() {
         </div>
 
         <div className="userTable">
-          <h1>Manage News </h1>
+          <h1>Manage News</h1>
 
           <table>
             <thead>
@@ -134,10 +161,16 @@ function ManageUsers() {
               </tr>
             </thead>
             <tbody>
-              {news.map((item, index) => (
+              {news && news.map((item, index) => (
                 <tr key={index}>
                   <td>{item.title}</td>
-                  <td><button>Delete</button></td>
+                  <td>
+                    <button
+                      onClick={() => deleteNews(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
