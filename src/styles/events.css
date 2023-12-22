@@ -46,7 +46,7 @@
 
 .eventCardSection .card{
     width: 20%;
-    height: 40vh;
+    height: auto;
     background-color: #eceaea;
     border-radius: 5px; 
 }

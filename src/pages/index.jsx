@@ -19,7 +19,6 @@ function HomePage() {
       const response = await axios.get("/student/get_allCourseList/limit=2&page=1&query=courseList");
 
 
-      // Check if the status is true before processing the data
       if (response.status === 200) {
         const courses = response.data.data.courses.map((course) => {
           return {
@@ -28,7 +27,10 @@ function HomePage() {
             content: course.courseOverview,
             id:course.id
           };
+          
         });
+
+        console.log(response)
         setMainContent(courses);
       } else {
         console.error("API request failed:", response.data.data.message);
@@ -42,35 +44,7 @@ function HomePage() {
     fetchCourses();
   }, []);
 
-  // const cardItems = [
-  //   {
-  //     name: "Software Engineering",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-  //   },
-
-  //   {
-  //     name: "Software Engineering",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-  //   },
-
-  //   {
-  //     name: "Software Engineering",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-  //   },
-
-  //   {
-  //     name: "Software Engineering",
-  //     image: "./images/card.jpg",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore mollitia deserunt atque sed saepe minus? Magnam officiis eius dolorem aliquam quia,",
-  //   },
-  // ];
+  
 
   return (
     <div>
@@ -108,7 +82,7 @@ function HomePage() {
               <h3>{item.title}</h3>
               <img className="images" src={getUrl(item.image)} alt="" />
               <p>{item.courseOverview}</p>
-              <button>View more</button>
+              <button onClick={() => navigate("/student/course?id=" +item.id)}>View more</button>
             </div>
           );
         })}

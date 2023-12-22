@@ -84,7 +84,7 @@
 
 .card{
     width: 20%;
-    padding: 10px 15px;
+    height: 40vh;
     background-color: rgb(214, 255, 226);
     border-radius: 10px;
     box-shadow: 1px 1px 10px 0px rgb(190, 190, 190);
